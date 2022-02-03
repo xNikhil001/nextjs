@@ -17,8 +17,8 @@ class Navbar extends React.Component{
   render(){
     return(
       <nav className="flex justify-between w-full h-16 items-center shadow-lg">
-        <div className="ml-4 text-4xl font-ceviche">CoinParadise</div>
-        <ul className="flex justify-evenly w-2/5 hidden md:flex">
+        <div className="ml-4 text-4xl font-ceviche sm:ml-12">CP</div>
+        <ul className="flex justify-evenly w-4/12 hidden md:flex sm:mr-12">
           <li><Link href="/"><a>Home</a></Link></li>
           <li><Link href="/promote"><a>Promote</a></Link></li>
           <li><Link href="/submit"><a>Submit</a></Link></li>

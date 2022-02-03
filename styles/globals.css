@@ -8,3 +8,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .input {
+    @apply w-11/12 bg-gray-200 mx-auto block p-2 my-6 rounded-md border placeholder-gray-500 hover:bg-gray-300;
+  }
+}
