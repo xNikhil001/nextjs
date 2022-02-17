@@ -11,7 +11,7 @@ class Promote extends React.Component{
           <div className="w-full mx-auto bg-gray-200 my-8 p-4 rounded-sm h-[240px]">
           <h3 className="w-10/12 mx-auto p-2 text-xl">Promote</h3>
           <p className="w-10/12 mx-auto p-2">To list your coin in promoted section or to advertise through banner please contact us on email provided below</p>
-          <Link href="mailto:naikn8113@gmail.com?subject=Promote Coin"><a className="bg-gray-500 w-10/12 mx-auto block text-center p-2 rounded-sm hover:bg-gray-400 text-gray-100 hover:text-black cursor-pointer">Click here to promote</a></Link>
+          <Link href="mailto:naikn8113@gmail.com?subject=Promote Coin"><a className="bg-gray-500 w-10/12 mx-auto block text-center p-2 rounded-sm hover:bg-gray-400 text-gray-100 hover:text-black cursor-pointer">Promote</a></Link>
         </div>
           <div className="w-full bg-gray-200 my-12 p-4 rounded-sm h-[240px]">
           <h3 className="w-10/12 mx-auto p-2 text-xl">Support</h3>

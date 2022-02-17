@@ -12,7 +12,7 @@ class Footer extends React.Component{
           <Image src="/telegram.svg" alt="img" width={40} height={40} />
         </div>
         <ul className="my-4">
-        {links.map(el => <li>{el}</li>)}
+        {links.map(el => <li key={el}>{el}</li>)}
         </ul>
         <span className="text-xs p-2">Copyright &copy; 2021 CoinParadise. All rights reserved</span>
       </div>
