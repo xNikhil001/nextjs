@@ -11,17 +11,17 @@ function Navbar(){
     setIsNavOpen(!isNavOpen);
   }
     return(
-      <nav className="flex justify-between w-full h-16 items-center shadow-lg z-50 bg-white fixed top-0">
-        <div className="mt-4 ml-3"><Link href="/"><a><Image src="/logo2.png" alt="LOGO" width={220} height={50} /></a></Link></div>
+      <nav className="flex justify-between w-full h-16 items-center shadow-[0_15px_3px_-15px_#97F049] z-50 bg-black fixed top-0">
+        <div className="absolute t-4 left-5"><Link href="/"><a className="text-3xl text-[#97F049]">CoinParadise</a></Link></div>
         <ul className="flex justify-evenly w-4/12 hidden md:flex sm:mr-12">
           <li><Link href="/"><a>Home</a></Link></li>
           <li><Link href="/promote"><a>Promote</a></Link></li>
           <li><Link href="/submit"><a>Submit</a></Link></li>
         </ul>
         <div className={`md:hidden absolute top-4 right-7 flex flex-col`} onClick={toggleNav}>
-          <span className="text-3xl text-black">&#x2632;</span>
+          <span className="text-3xl text-[#97F049]">&#x2632;</span>
         </div>
-        <ul className={`w-full z-50 fixed top-0 h-screen md:hidden bg-white text-black text-center ${isNavOpen? "translate-x-0" : "-translate-x-full"} transition-all duration-300`}>
+        <ul className={`w-full z-50 fixed top-0 h-screen md:hidden bg-black text-white text-center text-2xl ${isNavOpen? "translate-x-0" : "-translate-x-full"} transition-all duration-300`}>
           <li className="absolute top-3 left-2">
             <div><Link href="/"><a><Image src="/logo2.png" alt="LOGO" width={220} height={50} /></a></Link></div>
           </li>

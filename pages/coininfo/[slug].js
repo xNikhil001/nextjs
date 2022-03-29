@@ -3,31 +3,18 @@ function coininfo({data}){
     <div>
       {data._id}
         <hr />
-      {data.test}
+      {data.name}
     </div>
   )
 }
 
-export async function getStaticPaths(){
-  const url = "http://localhost:8000/api/coins"
-  const res = await fetch(url)
-  const data = await res.json();
-  const paths = data.map((item) => ({
-    params: { slug: item._id },
-  }))
-  return{
-    paths,
-    fallback: false
-  }
-}
-
-export async function getStaticProps({params}){
-  const url = `http://localhost:8000/api/coins/${params.slug}`
+export async function getServerSideProps({params}){
+  const url = `https://cp0099.herokuapp.com/api/coins/${params.slug}`
   const res = await fetch(url)
   const data = await res.json();
   return{
     props: {
-      data
+      data: data.result
     }
   }
 }

@@ -1,27 +1,12 @@
 import Image from 'next/image'
 import {useRouter} from 'next/router'
-function TopCoins(){
+function TopCoins({coins}){
   const router = useRouter();
-  const arr = [{
-    name: "Bitcoin",
-    symbol: "BTC",
-    mcap: "$577,567,888",
-    votes: "1"
-  },{
-    name: "Bitcoin",
-    symbol: "BTC",
-    mcap: "$577,567,888",
-    votes: "1"
-  },{
-    name: "Bitcoin",
-    symbol: "BTC",
-    mcap: "$577,567,888",
-    votes: "699"
-  }]
+  
   function viewCoinInfo(ID){
     router.push(`/coininfo/${ID}`)
   }
-  const data = arr.map((el)=><div className="max-w-[600px] w-11/12 mx-auto my-4 flex justify-between items-center bg-gray-100 p-3" key={Math.random()} onClick={()=>viewCoinInfo(el._id)}>
+  const data = coins.map((el)=><div className="max-w-[600px] w-11/12 mx-auto my-4 flex justify-between items-center bg-gray-100 p-3" key={Math.random()} onClick={()=>viewCoinInfo(el._id)}>
       <Image src="/instagram.svg" width={35} height={35}/>
       <span className="flex flex-col -ml-[40%] sm:-ml-[10%] text-[15px]">{el.symbol} <span className="text-sm">{el.name}</span></span>
       <span className="hidden sm:flex">{el.mcap}</span>
