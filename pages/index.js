@@ -1,16 +1,17 @@
 import dynamic from 'next/dynamic';
+import useStore from '../zustand';
 
 const Promoted = dynamic(()=>import('../components/Promoted'))
-const TopCoins = dynamic(()=>import('../components/TopCoins'))
 const OtherCoins = dynamic(()=>import('../components/OtherCoins'))
 
 function Home({data}){
+  const setCoins = useStore(state => state.setCoins)
+  setCoins(data);
   return(
-    <div>
-    <Promoted coins={data} />
-    <TopCoins coins={data} />
+    <>
+    <Promoted/>
     <OtherCoins />
-    </div>
+    </>
   )
 }
 export default Home;

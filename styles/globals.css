@@ -6,12 +6,12 @@
 
 @layer base {
   body {
-    @apply bg-black text-gray-300
+    @apply bg-[#6E6E6E] text-gray-300
   }
 }
 
 @layer components {
   .input {
-    @apply w-11/12 bg-gray-200 mx-auto block p-2 my-6 rounded-md border placeholder-gray-500 hover:bg-gray-300;
+    @apply w-full bg-[#1a1a1a] mx-auto block p-2 my-6 rounded-md outline-0 placeholder-gray-300 hover:bg-[#3f3f3f] hover:text-gray-300 shadow-3xl;
   }
 }

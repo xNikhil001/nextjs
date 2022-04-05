@@ -1,15 +1,24 @@
-import Image from 'next/image'
 import {useState} from 'react'
+import dynamic from 'next/dynamic';
+
+const NewCoins = dynamic(()=>import('../components/NewCoins.js'))
+const AllTimeHigh = dynamic(()=>import('../components/AllTimeHighCoins.js'))
+
 function OtherCoins(){
-  const [tab,setTab] = useState("New")
+  const [tab,setTab] = useState("NEW");
+  const handleChange = (e)=>{
+    setTab(e.target.value)
+  }
   return(
     <>
-      <h1 className="max-w-[600px] w-11/12 mx-auto">Other Coins</h1>
-      <div className="flex max-w-[600px] w-11/12 mx-auto">
-        <button className="bg-red-100 mr-2" onClick={()=>setTab("New")}>New</button>
-        <button className="bg-red-100" onClick={()=>setTab("ATH")}>ATH</button>
+      <div className="flex max-w-[600px] w-11/12 mx-auto items-center mt-10">
+        <h1 className="max-w-[600px] w-11/12 mx-auto text-xl">Other Coins</h1>
+        <select value={tab} onChange={handleChange} className="w-4/12 text-center bg-[#303030] p-2 outline-0 shadow-3xl rounded-md">
+          <option value="NEW">NEW</option>
+          <option value="ATH">ATH</option>
+        </select>
       </div>
-      {tab == 'New'? (<div>New</div>) : tab== 'ATH' ? (<div>ATH</div>) : ""}
+      {tab == 'NEW'? <NewCoins /> : tab== 'ATH' ? <AllTimeHigh /> : ""}
     </>
   )
 }
