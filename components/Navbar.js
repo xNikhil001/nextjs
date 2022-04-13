@@ -1,10 +1,14 @@
 import {useState} from 'react';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
+import { useSession, signIn, signOut } from "next-auth/react";
 
 function Navbar(){
+  const { data: session } = useSession();
+  console.log(session)
   const router = useRouter();
   const [isNavOpen,setIsNavOpen] = useState(false);
+  const [openMenu,setOpenMenu] = useState(false);
   const path = router.pathname;
   const toggleNav = ()=>{
     setIsNavOpen(!isNavOpen);
@@ -18,8 +22,15 @@ function Navbar(){
           <li><Link href="/promote"><a>Promote</a></Link></li>
           <li><Link href="/submit"><a>Submit</a></Link></li>
         </ul>
-        <div className={`md:hidden absolute top-4 right-5 flex flex-col`} onClick={toggleNav}>
+        <div className={`md:hidden absolute top-4 right-5`} onClick={toggleNav}>
           <span className="text-3xl text-[#BCFD4C]">&#x2632;</span>
+        </div>
+        <div className={`md:hidden absolute top-[26%] right-16`}>
+          <i className="fa-solid fa-circle-user text-3xl" onClick={()=>setOpenMenu(!openMenu)}></i>
+        </div>
+        <div className={`w-4/12 h-[10rem] bg-[#999999] flex flex-col absolute top-[82%] right-[16%] rounded-sm shadow-3xl ${openMenu ? "block" : "hidden"}`}>
+          {session && (<div><span>{session.user.name}</span><button onClick={()=>signOut()}>Sign Out</button></div>)}
+          {!session && (<button onClick={()=>signIn()}>Sign In</button>)}
         </div>
         <ul className={`w-full z-50 fixed top-0 h-screen md:hidden bg-black text-white text-center text-2xl ${isNavOpen? "translate-x-0" : "-translate-x-full"} transition-all duration-300`}>
           <li className="absolute top-4 left-5">

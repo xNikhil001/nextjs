@@ -1,9 +1,7 @@
 import axios from "axios";
-import useStore from '../zustand';
 import {useRouter} from 'next/router';
 
-function Promoted(){
-  const coins = useStore(state => state.coins);
+function Promoted({coins}){
   const router = useRouter();
   const voteBtn = async (ID)=>{
     const url = `https://cp0099.herokuapp.com/api/coins`;
