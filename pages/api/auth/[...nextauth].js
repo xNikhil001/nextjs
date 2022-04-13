@@ -1,17 +1,11 @@
 import NextAuth from "next-auth"
-import TwitterProvider from "next-auth/providers/twitter";
 import GoogleProvider from "next-auth/providers/google";
 
 const options = {
   providers: [
-    TwitterProvider({
-      clientId: process.env.TWITTER_CLIENT_ID,
-      clientSecret: process.env.TWITTER_CLIENT_SECRET,
-      version: "2.0"
-    }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       authorization: {
         params: {
           prompt: "consent",
@@ -22,14 +16,12 @@ const options = {
     })
   ],
   callbacks: {
-    async signIn({ account, profile }) {
-      if (account.provider === "google") {
-        return profile.email_verified && profile.email.endsWith("@gmail.com")
-      }
-      return true // Do different verification for other providers that don't have `email_verified`
-    },
+    async session({ session, token, user }) {
+      session.user.uid = token.sub
+      return session
+    } 
   },
-  secrete: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
   debug:true
 }
 

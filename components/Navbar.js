@@ -5,7 +5,6 @@ import { useSession, signIn, signOut } from "next-auth/react";
 
 function Navbar(){
   const { data: session } = useSession();
-  console.log(session)
   const router = useRouter();
   const [isNavOpen,setIsNavOpen] = useState(false);
   const [openMenu,setOpenMenu] = useState(false);

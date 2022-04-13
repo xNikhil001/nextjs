@@ -1,11 +1,25 @@
 import axios from "axios";
 import {useRouter} from 'next/router';
+import { useSession } from "next-auth/react";
+import {useStore} from '../zustand';
 
 function Promoted({coins}){
   const router = useRouter();
+  const { data: session } = useSession();
+  const setSignInToast = useStore(state => state.setSignInToast)
   const voteBtn = async (ID)=>{
-    const url = `https://cp0099.herokuapp.com/api/coins`;
-    const res = await axios.patch(url,{ID});
+    const url = `http://localhost:8000/api/coins`;
+    if(!session){
+      setSignInToast();
+      return;
+    }else{
+      const uid = session.user.id;
+      const data = {
+        ID: ID,
+        uid: uid
+      }
+      const res = await axios.patch(url,data);
+    }
   }
   const viewCoinInfo = (ID)=>{
     router.push(`/coininfo/${ID}`)
