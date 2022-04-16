@@ -28,7 +28,7 @@ function Navbar(){
           <i className="fa-solid fa-circle-user text-3xl" onClick={()=>setOpenMenu(!openMenu)}></i>
         </div>
         <div className={`w-4/12 h-[10rem] bg-[#999999] flex flex-col absolute top-[82%] right-[16%] rounded-sm shadow-3xl ${openMenu ? "block" : "hidden"}`}>
-          {session && (<div><span>{session.user.name}</span><button onClick={()=>signOut()}>Sign Out</button></div>)}
+          {session && (<div><span>{session.user.uid}</span><button onClick={()=>signOut()}>Sign Out</button></div>)}
           {!session && (<button onClick={()=>signIn()}>Sign In</button>)}
         </div>
         <ul className={`w-full z-50 fixed top-0 h-screen md:hidden bg-black text-white text-center text-2xl ${isNavOpen? "translate-x-0" : "-translate-x-full"} transition-all duration-300`}>

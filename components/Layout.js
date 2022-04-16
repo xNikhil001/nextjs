@@ -12,7 +12,7 @@ export default function Layout({ children }) {
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
       <Navbar />
-      <main className="min-h-[calc(100vh_-_15rem)] mt-[25%]">{children}</main>
+      <main className="min-h-[calc(100vh_-_15rem)] mt-[25%] sm:mt-[15%]">{children}</main>
       <Footer />
     </>
   )

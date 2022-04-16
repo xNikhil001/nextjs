@@ -1,9 +1,11 @@
 import {useState} from 'react';
 import Validate from '../services/Validate.js';
 import axios from 'axios';
+import { useSession } from "next-auth/react";
 
 function Submit (){
-  const postURI = "http://localhost:8000/api/coins"
+  const postURI = "http://localhost:8000/api/coins";
+  const { data: session } = useSession();
   const [formData,setFormData] = useState({
     coin_name: "",
     symbol: "",
