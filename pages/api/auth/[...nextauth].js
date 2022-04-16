@@ -15,7 +15,7 @@ const options = {
       return session
     } 
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXT_PUBLIC_SECRET,
   debug:true
 }
 
