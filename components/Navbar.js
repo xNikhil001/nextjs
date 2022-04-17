@@ -81,7 +81,7 @@ function Navbar(){
             }else if(val.name.toLowerCase().includes(coinName.toLowerCase())){
               return val;
             }
-          }).map((el)=>(<div className="w-11/12 mx-auto my-4 text-lg text-white" onClick={()=>viewCoinInfo(el._id)}>{el.name}</div>))}
+          }).map((el)=>(<div key={el._id} className="w-11/12 mx-auto my-4 text-lg text-white" onClick={()=>viewCoinInfo(el._id)}>{el.name}</div>))}
           </div>
         </div>
         
