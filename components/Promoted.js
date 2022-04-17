@@ -69,6 +69,7 @@ function Promoted(){
     </div>)
   return(
     <>
+      <h1 className="max-w-[600px] w-11/12 mx-auto text-xl">Promoted Coins</h1>
       {displayData}
     </>
   )
