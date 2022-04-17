@@ -4,8 +4,8 @@ import GoogleProvider from "next-auth/providers/google";
 const options = {
   providers: [
   GoogleProvider({
-    clientId: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    clientId: `816206648815-5j215bv56cf1qrg88e42u1tvp91i60p6.apps.googleusercontent.com`,
+    clientSecret: `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`,
     authorization: {
         params: {
           prompt: "consent",
