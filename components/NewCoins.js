@@ -2,7 +2,7 @@ import axios from "axios";
 import {useState} from 'react';
 import {useRouter} from 'next/router';
 import dynamic from 'next/dynamic';
-import useSWR,{useSWRConfig} from 'swr';
+import useSWR from 'swr';
 import {useStore} from '../zustand';
 import { useSession } from "next-auth/react";
 
@@ -19,7 +19,7 @@ function NewCoins(){
   const { data:session } = useSession();
   const url = `https://cp0099.herokuapp.com/api/coins/new`
   const voteURI = `https://cp0099.herokuapp.com/api/coins`
-  //const {mutate} = useSWRConfig();
+
   const setSignInToast = useStore(state => state.setSignInToast)
   const [isBtnActive,setIsBtnActive] = useState(false);
   

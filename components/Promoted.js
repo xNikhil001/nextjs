@@ -1,18 +1,35 @@
 import axios from "axios";
-import {useRouter} from 'next/router';
-import {useStore} from '../zustand';
 import {useState} from 'react';
-import useSWR from 'swr';
+import {useRouter} from 'next/router';
+import dynamic from 'next/dynamic';
+import useSWR,{useSWRConfig} from 'swr';
+import {useStore} from '../zustand';
 import { useSession } from "next-auth/react";
 
-function Promoted({coins}){
-  const url = "https://cp0099.herokuapp.com/api/coins/promoted";
-  const voteURI = `http://localhost:8000/api/coins`;
-  const {data:session} = useSession();
+const Skeleton = dynamic(()=>import('./Skeleton.js'))
+
+const fetcher = async (url) => {
+    const data = await axios.get(url).then((res)=>res.data.result);
+    return data;
+  };
+  
+function Promoted(){
+  const [perPage,setPerPage] = useState(2);
   const router = useRouter();
-  const [isBtnActive,setIsBtnActive] = useState(false);
+  const { data:session } = useSession();
+  const url = `https://cp0099.herokuapp.com/api/coins/promoted`
+  const voteURI = `https://cp0099.herokuapp.com/api/coins`
+  //const {mutate} = useSWRConfig();
   const setSignInToast = useStore(state => state.setSignInToast)
-  // VOTE FUNCTION
+  const [isBtnActive,setIsBtnActive] = useState(false);
+  
+  const { data,error,mutate } = useSWR(url,fetcher);
+  
+  if(!data){
+    const skeletonData = [...Array(5)].map((el,index)=><Skeleton key={index} />)
+    return skeletonData;
+  }
+  
   const voteBtn = async (ID)=>{
     // DISABLE BUTTON
     setIsBtnActive(true);
@@ -29,24 +46,30 @@ function Promoted({coins}){
         ID: ID,
         uid: uid
       }
+      const options = {
+        rollbackOnError: true
+      }
+      //mutate(data)
       const res = await axios.patch(voteURI,userData);
+      mutate(data)
     }
   }
-  // COININFO PAGE NAVIGATION
+  
   const viewCoinInfo = (ID)=>{
-    router.push(`/coininfo/${ID}`)
-  }
-
-  const renderData = coins.map((el)=><div className="max-w-[600px] w-11/12 mx-auto my-4 flex justify-between rounded-md items-center bg-[#303030] p-3 shadow-3xl" key={el._id} onClick={()=>viewCoinInfo(el._id)}>
-      <img src={el.logo} width="37px" height="37px" className="rounded-sm"/>
+    router.push(`/coininfo/${ID}`);
+  };
+  
+  const arr = (data || [])
+  //console.log(arr);
+  const displayData = arr.map((el)=><div className="max-w-[600px] w-11/12 mx-auto my-4 flex justify-between items-center bg-[#303030] p-3 shadow-3xl rounded-md" key={el._id} onClick={()=>viewCoinInfo(el._id)}>
+      <img src={el.logo} width="37px" height="37px" alt="LOGO" className="rounded-sm"/>
       <span className="flex flex-col w-5/12">{el.symbol} <span className="text-sm">{el.name}</span></span>
-      <span className="hidden sm:flex">{el.marketcap}</span>
-      <button disabled={isBtnActive} className={`w-1/5 py-1 border border-gray-500 rounded-md text-md text-gray-300`} onClick={(e)=>{e.stopPropagation();voteBtn(el._id)}}><i className="fa-solid fa-circle-arrow-up mr-1"></i>{el.votes}</button>
+      <span className="hidden sm:flex">{el.mcap}</span>
+      <button className={`w-1/5 py-1 border border-gray-500 rounded-md text-md text-gray-300`} onClick={(e)=>{e.stopPropagation();voteBtn(el._id)}}><i className="fa-solid fa-circle-arrow-up mr-1"></i>{el.votes}</button>
     </div>)
   return(
     <>
-      <h1 className="max-w-[600px] mt-12 text-xl mx-auto w-11/12">Promoted Coins</h1>
-      {renderData}
+      {displayData}
     </>
   )
 }
