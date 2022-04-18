@@ -119,7 +119,7 @@ class Validate {
   checkMarketCap(marketcap){
     const error = []
     if(marketcap == ""){
-      error.push("Release date cannot be empty!");
+      error.push("Market capital cannot be empty!");
       this.errors.marketcapError = error;
       return;
     }

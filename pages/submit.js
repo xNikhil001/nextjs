@@ -1,11 +1,23 @@
-import {useState} from 'react';
+import {useState,useEffect} from 'react';
 import Validate from '../services/Validate.js';
 import axios from 'axios';
-import { useSession } from "next-auth/react";
+import { useSession,getSession,signIn } from "next-auth/react";
 
 function Submit (){
   const postURI = "http://localhost:8000/api/coins";
+  const [loading,setLoading] = useState(true);
   const { data: session } = useSession();
+  useEffect(()=>{
+    const checkSession= async ()=>{
+      const session = await getSession();
+      if(!session){
+        signIn();
+      }else{
+        setLoading(false);
+      }
+    }
+    checkSession();
+  },[]);
   const [formData,setFormData] = useState({
     coin_name: "",
     symbol: "",
@@ -23,24 +35,16 @@ function Submit (){
   const [submitStatus,setSubmitStatus] = useState(false);
   
   async function postFormData(){
-    const result = await fetch(postURI,{
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: {
-      'Content-Type': 'application/json'
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-      }
-    });
-    const res = await result.json();
+    const res = await axios.post(postURI,formData);
     
-    if(res.success){
+    if(res.data.success){
       setSubmitStatus(true);
       setTimeout(function() {
         setSubmitStatus(false);
       }, 5000);
     }
-    if(res.errorStatus){
-      setError(res.errors);
+    if(res.data.errorStatus){
+      setError(res.data.errors);
     }
   }
   
@@ -58,39 +62,44 @@ function Submit (){
       postFormData();
     }
   }
+  if(loading){
+    return (<div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <i className="fa-solid fa-circle-notch animate-spin text-[45px]"></i>
+    </div>)
+  }
   return(
       <>
       {submitStatus && (<div>Form Submitted</div>)}
         <h3 className="max-w-screen-sm w-11/12 mx-auto mt-8 text-2xl mb-2">Submit your coin</h3>
         <form className="max-w-screen-sm w-11/12 mx-auto shadow-lg rounded-lg mb-6 p-4">
             <input className="input" name="coin_name" placeholder="Coin Name" type="text" value={formData.coin_name || ""} onChange={handleForm} />
-            {error.nameError && error.nameError.map((el)=>(<div className="text-red-800 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
+            {error.nameError && error.nameError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             <input className="input" placeholder="Symbol" name="symbol" type="text" value={formData.symbol || ""} onChange={handleForm}/>
-             {error.symbolError && error.symbolError.map((el)=>(<div className="text-red-800 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
+             {error.symbolError && error.symbolError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             <input className="input" placeholder="Logo URL" type="url" name="logo" value={formData.logo || ""} onChange={handleForm} />
-             {error.logoError && error.logoError.map((el)=>(<div className="text-red-800 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
+             {error.logoError && error.logoError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             <textarea className="input" name="description" value={formData.description || ""} onChange={handleForm} cols="40" rows="6" placeholder="Description of your coin..."></textarea>
-             {error.descError && error.descError.map((el)=>(<div className="text-red-800 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
+             {error.descError && error.descError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             <input className="input" placeholder="Address" type="text" name="address" value={formData.address || ""} onChange={handleForm} />
-             {error.addressError && error.addressError.map((el)=>(<div className="text-red-800 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
+             {error.addressError && error.addressError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             <input className="input" placeholder="Website URL" type="url" name="website" value={formData.website || ""} onChange={handleForm} />
-             {error.websiteError && error.websiteError.map((el)=>(<div className="text-red-800 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
-            <select name="chain" value={formData.chain || ""} onChange={handleForm} className="w-full sm:w-11/12 bg-[#303030] mx-auto block p-2 my-6 rounded-md outline-0 text-gray-300 hover:bg-[#3f3f3f] hover:text-gray-300 shadow-3xl">
+             {error.websiteError && error.websiteError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
+            <select name="chain" value={formData.chain || ""} onChange={handleForm} className="w-full sm:w-11/12 bg-gradient-to-r from-[#5b6467] to-[#8b939a] mx-auto block p-2 my-6 rounded-md outline-0 text-gray-300 hover:bg-[#3f3f3f] hover:text-gray-300 shadow-3xl">
               <option value="">Select Block Chain type</option>
               <option value="Ethereum">Ethereum</option>
               <option value="Binance Smart Chain">Binance Smart Chain</option>
               <option value="Polygon">Polygon</option>
               <option value="Bitcoin">Bitcoin</option>
             </select>
-             {error.chainError && error.chainError.map((el)=>(<div className="text-red-800 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
+             {error.chainError && error.chainError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             <input className="input" type="date" name="release" value={formData.release || ""} onChange={handleForm} />
-             {error.releaseError && error.releaseError.map((el)=>(<div className="text-red-800 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
+             {error.releaseError && error.releaseError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             <input className="input" placeholder="Market Capital" type="number" name="marketcap" value={formData.marketcap || ""} onChange={handleForm} />
-             {error.marketcapError && error.marketcapError.map((el)=>(<div className="text-red-800 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
+             {error.marketcapError && error.marketcapError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             <input className="input" placeholder="Twitter link" type="url" name="twitter" value={formData.twitter || ""} onChange={handleForm} />
-             {error.twitterError && error.twitterError.map((el)=>(<div className="text-red-800 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
+             {error.twitterError && error.twitterError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             <input className="input" placeholder="Telegram link" type="url" name="telegram" value={formData.telegram || ""} onChange={handleForm} />
-            {error.telegramError && error.telegramError.map((el)=>(<div className="text-red-800 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
+            {error.telegramError && error.telegramError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             <button className="w-6/12 bg-[#BCFD4C] text-black shadow-3xl mx-auto block p-2 my-6 rounded-md hover:bg-[#3f3f3f] hover:text-gray-300" onClick={submitForm}>Submit</button>
         </form>
       </>
