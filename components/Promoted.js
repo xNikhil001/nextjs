@@ -61,15 +61,15 @@ function Promoted(){
   
   const arr = (data || [])
   //console.log(arr);
-  const displayData = arr.map((el)=><div className="max-w-[600px] w-11/12 mx-auto my-4 flex justify-between items-center bg-[#303030] p-3 shadow-3xl rounded-md" key={el._id} onClick={()=>viewCoinInfo(el._id)}>
+  const displayData = arr.map((el)=><div className="max-w-[800px] w-11/12 mx-auto my-4 flex justify-between items-center bg-[#303030] p-3 shadow-3xl rounded-md" key={el._id} onClick={()=>viewCoinInfo(el._id)}>
       <img src={el.logo} width="37px" height="37px" alt="LOGO" className="rounded-sm"/>
-      <span className="flex flex-col w-5/12">{el.symbol} <span className="text-sm">{el.name}</span></span>
-      <span className="hidden sm:flex">{el.mcap}</span>
+      <span className="flex flex-col w-5/12 sm:w-3/12">{el.symbol}<span className="text-sm">{el.name}</span></span>
+      <span className="hidden sm:flex">{el.marketcap}</span>
+      <span className="hidden sm:flex">{el.release}</span>
       <button className={`w-1/5 py-1 border border-gray-500 rounded-md text-md text-gray-300`} onClick={(e)=>{e.stopPropagation();voteBtn(el._id)}}><i className="fa-solid fa-circle-arrow-up mr-1"></i>{el.votes}</button>
     </div>)
   return(
     <>
-      <h1 className="max-w-[600px] w-11/12 mx-auto text-xl">Promoted Coins</h1>
       {displayData}
     </>
   )

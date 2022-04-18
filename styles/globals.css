@@ -17,4 +17,7 @@
   .links {
     @apply bg-[#BCFD4C] my-2 w-4/12 text-black text-center shadow-3xl rounded-sm
   }
+  .pcLinks {
+    @apply text-xl
+  }
 }
