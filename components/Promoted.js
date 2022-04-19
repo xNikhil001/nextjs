@@ -11,7 +11,7 @@ import converter from '../helpers/converter.js'
 const Skeleton = dynamic(()=>import('./Skeleton.js'))
 const options = {
   headers: {
-    'verify-key': process.env.NEXT_PUBLIC_VERIFY
+    'verify-key': 'check'
   }
 }
 const fetcher = async (url) => {
