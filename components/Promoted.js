@@ -9,13 +9,11 @@ import moment from 'moment';
 import converter from '../helpers/converter.js'
 
 const Skeleton = dynamic(()=>import('./Skeleton.js'))
-const options = {
-  headers: {
-    'verify-key': 'check'
-  }
-}
+
 const fetcher = async (url) => {
-    const data = await axios.get(url,options).then((res)=>res.data.result);
+    const data = await axios.get(url).then((res)=>{
+      res.data.result
+    });
     return data;
   };
   
@@ -23,8 +21,8 @@ function Promoted(){
   const [perPage,setPerPage] = useState(2);
   const router = useRouter();
   const { data:session } = useSession();
-  // url = `https://cp0099.herokuapp.com/api/coins/promoted`;
-  const url = `http://localhost:8000/api/coins`;
+  url = `https://cp0099.herokuapp.com/api/coins/promoted`;
+  //const url = `http://localhost:8000/api/coins`;
   const voteURI = `https://cp0099.herokuapp.com/api/coins`
   //const {mutate} = useSWRConfig();
   const setSignInToast = useStore(state => state.setSignInToast)
