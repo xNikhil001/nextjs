@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useSession,getSession,signIn } from "next-auth/react";
 
 function Submit (){
-  const postURI = "http://localhost:8000/api/coins";
+  const postURI = '/api/coins';
   const [loading,setLoading] = useState(true);
   const { data: session } = useSession();
   useEffect(()=>{

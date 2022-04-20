@@ -18,9 +18,8 @@ function AllTimeHigh(){
   const [perPage,setPerPage] = useState(2);
   const router = useRouter();
   const { data:session } = useSession();
-  const url = `https://cp0099.herokuapp.com/api/coins/ath`
-  const voteURI = `https://cp0099.herokuapp.com/api/coins`
-  //const {mutate} = useSWRConfig();
+  const url = '/api/coins/ath'
+  const voteURI = '/api/coins'
   const setSignInToast = useStore(state => state.setSignInToast)
   const [isBtnActive,setIsBtnActive] = useState(false);
   
@@ -52,6 +51,9 @@ function AllTimeHigh(){
       }
       //mutate(data)
       const res = await axios.patch(voteURI,userData);
+      if(!res.data.success){
+        alert(res.data.vote)
+      }
       mutate(data)
     }
   }

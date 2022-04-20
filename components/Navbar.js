@@ -7,12 +7,12 @@ import useSWR from 'swr';
 import Image from 'next/image'
 
 const fetcher = async (url) => {
-    const data = await axios.get(url).then((res)=>res.data.result);
-    return data;
-  };
+  const data = await axios.get(url).then((res)=>res.data.result);
+  return data;
+};
 
 function Navbar(){
-  const url = `https://cp0099.herokuapp.com/api/coins`
+  const url = '/api/coins'
   const { data: session } = useSession();
   const router = useRouter();
   const [isNavOpen,setIsNavOpen] = useState(false);

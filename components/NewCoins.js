@@ -19,8 +19,8 @@ function NewCoins(){
   const [perPage,setPerPage] = useState(2);
   const router = useRouter();
   const { data:session } = useSession();
-  const url = `https://cp0099.herokuapp.com/api/coins/new`
-  const voteURI = `https://cp0099.herokuapp.com/api/coins`
+  const url = '/api/coins/new'
+  const voteURI = '/api/coins'
 
   const setSignInToast = useStore(state => state.setSignInToast)
   const [isBtnActive,setIsBtnActive] = useState(false);
@@ -53,6 +53,9 @@ function NewCoins(){
       }
       //mutate(data)
       const res = await axios.patch(voteURI,userData);
+      if(!res.data.success){
+        alert(res.data.vote)
+      }
       mutate(data)
     }
   }
