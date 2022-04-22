@@ -45,7 +45,7 @@ function Navbar(){
   }
     return(
       <nav className="flex justify-between w-full h-16 items-center shadow-xl z-50 bg-gradient-to-r from-[#28313b] to-[#485461] fixed top-0">
-        <div className="absolute t-4 left-3"><Link href="/"><a className="text-3xl text-gray-100">CoinParadise</a></Link></div>
+        <div className="absolute top-3 left-5"><Link href="/"><a><Image src="/logo.webp" width={45} height={45} /></a></Link></div>
         <div></div>
         <ul className="flex justify-evenly w-4/12 hidden md:flex sm:mr-[20%]">
           <li><Link href="/"><a className="pcLinks">Home</a></Link></li>
