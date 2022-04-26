@@ -8,7 +8,7 @@ export default async function handler(req,res){
       headers: {
         'Content-Type':'application/json',
         referer: 'https://nextjs-dusky-gamma.vercel.app/',
-        'verify': token
+        verify: token
       }
     }
   if(req.method == 'PATCH'){
