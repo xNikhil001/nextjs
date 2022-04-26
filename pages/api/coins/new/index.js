@@ -8,7 +8,7 @@ export default async function handler(req,res){
       headers: {
         'Content-Type':'application/json',
         referer: 'https://nextjs-dusky-gamma.vercel.app/',
-        'verify-key': token
+        'x-api-key': token
       }
     }
   const data = await axios.get(url,options)
