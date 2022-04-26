@@ -3,7 +3,7 @@ import Validate from '../services/Validate.js';
 import axios from 'axios';
 import { useSession,getSession,signIn } from "next-auth/react";
 
-function Submit (){
+function Submit(){
   const postURI = '/api/coins';
   const [loading,setLoading] = useState(true);
   const { data: session } = useSession();
@@ -84,7 +84,7 @@ function Submit (){
              {error.addressError && error.addressError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             <input className="input" placeholder="Website URL" type="url" name="website" value={formData.website || ""} onChange={handleForm} />
              {error.websiteError && error.websiteError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
-            <select name="chain" value={formData.chain || ""} onChange={handleForm} className="w-full sm:w-11/12 bg-gradient-to-r from-[#5b6467] to-[#8b939a] mx-auto block p-2 my-6 rounded-md outline-0 text-gray-300 hover:bg-[#3f3f3f] hover:text-gray-300 shadow-3xl">
+            <select name="chain" value={formData.chain || ""} onChange={handleForm} className="w-full sm:w-11/12 bg-[#393E46] mx-auto block p-2 my-6 rounded-md outline-0 text-gray-300 hover:bg-[#3f3f3f] hover:text-gray-300 shadow-3xl">
               <option value="">Select Block Chain type</option>
               <option value="Ethereum">Ethereum</option>
               <option value="Binance Smart Chain">Binance Smart Chain</option>
@@ -100,7 +100,7 @@ function Submit (){
              {error.twitterError && error.twitterError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             <input className="input" placeholder="Telegram link" type="url" name="telegram" value={formData.telegram || ""} onChange={handleForm} />
             {error.telegramError && error.telegramError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
-            <button className="w-6/12 bg-[#BCFD4C] text-black shadow-3xl mx-auto block p-2 my-6 rounded-md hover:bg-[#3f3f3f] hover:text-gray-300" onClick={submitForm}>Submit</button>
+            <button className="w-6/12 bg-[#4ECCA3] shadow-3xl mx-auto block p-2 my-6 rounded-md hover:bg-[#3f3f3f] hover:text-gray-300" onClick={submitForm}>Submit</button>
         </form>
       </>
     )

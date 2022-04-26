@@ -4,7 +4,7 @@ import {useStore} from '../zustand';
 const Promoted = dynamic(()=>import('../components/Promoted'))
 const OtherCoins = dynamic(()=>import('../components/OtherCoins'))
 
-function HomePage(){
+export default function Home(){
   const signInToast = useStore(state => state.signInToast);
   
   return(
@@ -14,11 +14,5 @@ function HomePage(){
     <Promoted />
     <OtherCoins />
     </>
-  )
-}
-
-export default function Home(){
-  return (
-    <HomePage />
   )
 }

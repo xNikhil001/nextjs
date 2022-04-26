@@ -12,8 +12,7 @@ export default function Layout({ children }) {
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
       <Navbar />
-      <main className="min-h-[calc(100vh_-_15rem)] mt-[25%] sm:mt-[15%]">
-      <div className="max-w-[420px] w-11/12 h-[60px] bg-red-100 mx-auto mb-4">hii</div>{children}</main>
+      <main className="min-h-[calc(100vh_-_15rem)] mt-[25%] sm:mt-[15%]">{children}</main>
       <Footer />
     </>
   )

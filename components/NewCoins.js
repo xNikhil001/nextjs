@@ -28,7 +28,7 @@ function NewCoins(){
   const { data,error,mutate } = useSWR(url,fetcher);
   
   if(!data){
-    const skeletonData = [...Array(5)].map((el,index)=><Skeleton key={index} />)
+    const skeletonData = [...Array(10)].map((el,index)=><Skeleton key={index} />)
     return skeletonData;
   }
   
@@ -67,7 +67,7 @@ function NewCoins(){
   const len = (data || []).length;
   const arr = (data || []).slice(0,perPage);
   //console.log(arr);
-  const displayData = arr.map((el)=><div className="max-w-[800px] w-11/12 mx-auto my-4 flex justify-between items-center bg-gradient-to-r from-[#5b6467] to-[#8b939a] p-3 shadow-3xl rounded-md" key={el._id} onClick={()=>viewCoinInfo(el._id)}>
+  const displayData = arr.map((el)=><div className="max-w-[800px] w-11/12 mx-auto my-4 flex justify-between items-center bg-[#393E46] p-3 shadow-3xl rounded-md" key={el._id} onClick={()=>viewCoinInfo(el._id)}>
       <img src={el.logo} width="37px" height="37px" alt="LOGO" className="rounded-sm"/>
       <span className="flex flex-col w-5/12 sm:w-3/12">{el.symbol} <span className="text-sm">{el.name}</span></span>
       <span className="hidden sm:flex w-2/12">{converter.format(el.marketcap)}</span>

@@ -1,16 +1,12 @@
-import React , {Component} from 'react'
-import Image from 'next/image'
-
-class Footer extends React.Component{
-  render(){
+export default function Footer(){
     const links = ['Terms & Conditions','Disclaimer']
     return(
       <>
       <footer className="w-full mt-8 h-44 text-center">
         <div className="flex sm:w-4/12 w-9/12 justify-evenly mx-auto p-6">
-          <Image src="/instagram.svg" alt="img" width={40} height={40} />
-          <Image src="/twitter.svg" alt="img" width={40} height={40} />
-          <Image src="/telegram.svg" alt="img" width={40} height={40} />
+          <img src="/instagram.svg" alt="img" width="40px" height="40px" />
+          <img src="/twitter.svg" alt="img" width="40px" height="40px" />
+          <img src="/telegram.svg" alt="img" width="40px" height="40px" />
         </div>
         <ul className="my-4">
         {links.map(el => <li key={el}>{el}</li>)}
@@ -19,7 +15,4 @@ class Footer extends React.Component{
       </footer>
       </>
     )
-  }
 }
-
-export default Footer;
