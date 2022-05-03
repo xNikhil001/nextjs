@@ -64,7 +64,7 @@ function Navbar(){
             }
           }></i>
         </div>
-        <div className={`w-6/12 sm:w-3/12 h-[10rem] bg-gradient-to-r from-[#677e98] to-[#8a98a8] flex flex-col absolute top-[82%] right-[16%] rounded-sm shadow-3xl sm:right-[5%] transition-all duration-300 ease-in-out ${openMenu ? "block" : "hidden"} items-center justify-center text-white`}>
+        <div className={`w-6/12 sm:w-3/12 h-[10rem] bg-[#5c6470] flex flex-col absolute top-[82%] right-[16%] rounded-sm shadow-3xl sm:right-[5%] transition-all duration-300 ease-in-out ${openMenu ? "block" : "hidden"} items-center justify-center text-white`}>
           {session && (<div className="flex flex-col text-center"><span className="mb-4">Welcome,{session.user.name}!</span><button className="border border-[#4ECCA3] rounded-md w-8/12 mx-auto p-1" onClick={()=>signOut()}>Sign Out</button></div>)}
           {!session && (<button className="border border-[#BCFD4C] rounded-md w-5/12 mx-auto p-1" onClick={()=>signIn()}>Sign In</button>)}
         </div>
@@ -79,7 +79,7 @@ function Navbar(){
             }
           } />
         </div>
-        <div className={`w-7/12 sm:w-4/12 h-auto bg-gradient-to-r from-[#677e98] to-[#8a98a8] flex flex-col absolute top-[82%] right-[25%] sm:right-[10%] rounded-sm shadow-3xl transition-all duration-300 ease-in-out ${openSearch ? "block" : "hidden"}`}>
+        <div className={`w-7/12 sm:w-4/12 h-auto bg-[#5c6470] flex flex-col absolute top-[82%] right-[25%] sm:right-[10%] rounded-sm shadow-3xl transition-all duration-300 ease-in-out ${openSearch ? "block" : "hidden"}`}>
           <input className="border w-full p-2 rounded-sm placeholder-gray-500 text-gray-500 outline-0 bg-gray-300" type="search" name="search" value={coinName} placeholder="search coin" onChange={handleChange} />
           <div className="overflow-scroll">
           {items.length !=0 && items.filter((val)=>{

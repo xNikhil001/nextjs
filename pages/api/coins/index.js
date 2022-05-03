@@ -1,15 +1,15 @@
 import axios from 'axios';
 
 export default async function handler(req,res){
-  const loc = `http://localhost:8000/api/coins`
   const token = process.env.TOKEN
   const options = {
-      headers: {
-        'Content-Type':'application/json',
-        referer: 'https://nextjs-dusky-gamma.vercel.app/',
-      }
+    headers: {
+      'Content-Type':'application/json',
+      referer: 'https://nextjs-dusky-gamma.vercel.app/',
     }
+  }
   const url = `https://cp0099.herokuapp.com/api/coins?verify=${token}`;
+  const loc = `http://localhost:8000/api/coins?verify=${token}`
   if(req.method == 'PATCH'){
     const userData = {
       ID: req.body.ID,

@@ -11,9 +11,9 @@ function OtherCoins(){
   }
   return(
     <>
-      <div className="flex max-w-[800px] w-11/12 mx-auto items-center mt-10">
-        <h1 className="max-w-[600px] w-11/12 mx-auto text-xl">Other Coins</h1>
-        <select value={tab} onChange={handleChange} className="w-4/12 text-center bg-[#393E46] p-2 outline-0 shadow-3xl rounded-md">
+      <div className="flex max-w-[800px] w-11/12 mx-auto items-center mt-10 mb-8">
+        <h1 className="max-w-[800px] w-11/12 mx-auto text-xl">Other Coins</h1>
+        <select value={tab} onChange={handleChange} className="w-4/12 sm:w-2/12 text-center bg-[#393E46] p-2 outline-0 shadow-3xl rounded-md">
           <option value="NEW">NEW</option>
           <option value="ATH">ATH</option>
         </select>

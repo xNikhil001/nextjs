@@ -16,7 +16,7 @@ const fetcher = async (url) => {
 };
 
 function NewCoins(){
-  const [perPage,setPerPage] = useState(2);
+  const [perPage,setPerPage] = useState(50);
   const router = useRouter();
   const { data:session } = useSession();
   const url = '/api/coins/new'
@@ -67,7 +67,7 @@ function NewCoins(){
   const len = (data || []).length;
   const arr = (data || []).slice(0,perPage);
   //console.log(arr);
-  const displayData = arr.map((el)=><div className="max-w-[800px] w-11/12 mx-auto my-4 flex justify-between items-center bg-[#393E46] p-3 shadow-3xl rounded-md" key={el._id} onClick={()=>viewCoinInfo(el._id)}>
+  const displayData = arr.map((el)=><div className="max-w-[800px] w-11/12 mx-auto my-0 flex justify-between items-center bg-[#393E46] p-3 shadow-3xl rounded-md" key={el._id} onClick={()=>viewCoinInfo(el._id)}>
       <img src={el.logo} width="37px" height="37px" alt="LOGO" className="rounded-sm"/>
       <span className="flex flex-col w-5/12 sm:w-3/12">{el.symbol} <span className="text-sm">{el.name}</span></span>
       <span className="hidden sm:flex w-2/12">{converter.format(el.marketcap)}</span>
@@ -77,7 +77,7 @@ function NewCoins(){
   return(
     <>
       {displayData}
-      <i onClick={()=>{setPerPage(perPage += 2)}} className={`w-full text-3xl text-center animate-bounce fa-solid fa-arrow-down ${perPage >= len ? "hidden" : ""}`}></i>
+      <i onClick={()=>{setPerPage(perPage += 50)}} className={`w-full text-3xl text-center animate-bounce fa-solid fa-arrow-down ${perPage >= len ? "hidden" : ""}`}></i>
     </>
   )
 }
