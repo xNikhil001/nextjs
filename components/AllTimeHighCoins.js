@@ -4,7 +4,7 @@ import {useRouter} from 'next/router';
 import dynamic from 'next/dynamic';
 import useSWR,{useSWRConfig} from 'swr';
 import {useStore} from '../zustand';
-import { useSession } from "next-auth/react";
+import { useSession,signIn } from "next-auth/react";
 import moment from 'moment';
 import converter from '../helpers/converter.js'
 const Skeleton = dynamic(()=>import('./Skeleton.js'))
@@ -38,7 +38,7 @@ function AllTimeHigh(){
     }, 1000);
     // CHECK IF USER LOGGED IN
     if(!session){
-      setSignInToast();
+      signIn();
       return;
     }else{
       const uid = session.user.uid;
@@ -65,7 +65,7 @@ function AllTimeHigh(){
   const len = (data || []).length;
   const arr = (data || []).slice(0,perPage);
   //console.log(arr);
-  const displayData = arr.map((el)=><div className="max-w-[800px] w-11/12 mx-auto my-0 flex justify-between items-center bg-[#393E46] p-3 shadow-3xl rounded-md" key={el._id} onClick={()=>viewCoinInfo(el._id)}>
+  const displayData = arr.map((el)=><div className="max-w-[1000px] w-11/12 mx-auto my-0 flex justify-between items-center bg-[#2a323c] p-3 shadow-3xl rounded-md" key={el._id} onClick={()=>viewCoinInfo(el._id)}>
       <img src={el.logo} width="37px" height="37px" alt="LOGO" className="rounded-sm"/>
       <span className="flex flex-col w-5/12 sm:w-3/12">{el.symbol} <span className="text-sm">{el.name}</span></span>
       <span className="hidden sm:flex w-2/12">{converter.format(el.marketcap)}</span>

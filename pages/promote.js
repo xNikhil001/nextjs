@@ -1,23 +1,58 @@
-import Link from 'next/link'
 
 function Promote(){
-    return(
-      <div className="max-w-screen-sm w-11/12 mx-auto my-6">
-        <h1 className="sm:text-4xl text-3xl text-center p-2">Contact Us</h1>
-        <p className="w-10/12 mx-auto p-2 text-center sm:text-xl text-lg">For queries and promotion check below</p>
-        <div className="max-w-[400px] mx-auto">
-          <div className="w-full mx-auto bg-[#393E46] my-8 p-4 rounded-sm h-[240px] shadow-3xl">
-          <h3 className="w-10/12 mx-auto p-2 text-xl">Promote</h3>
-          <p className="w-10/12 mx-auto p-2">To list your coin in promoted section or to advertise through banner please contact us on email provided below</p>
-          <Link href="mailto:naikn8113@gmail.com?subject=Promote Coin"><a className="shadow-3xl bg-gray-100 w-10/12 mx-auto block text-center p-2 rounded-md hover:bg-gray-400 text-black hover:text-black cursor-pointer">Promote</a></Link>
+  const pricing = [
+    {days: "1 day",bnb: 0.40,usd: "$150"},
+    {days: "3 days",bnb: 0.92,usd: "$350"},
+    {days: "7 days",bnb: 1.70,usd: "$650"}
+    ]
+  return(
+    <>
+      <div className="max-w-[600px] w-11/12 mx-auto text-center">
+        <h1 className="text-2xl">Promote Coin</h1>
+        <h3 className="text-lg mt-2">Promote your coin with us to get instant visibility on top</h3>
+        <h3 className="mt-12 text-lg">Promoted coins section</h3>
+        
+        <div className="max-w-[600px] w-11/12 mx-auto shadow-xl grid grid-cols-3 my-4 h-[200px] bg-[#2a323c] rounded-md">
+          <div className="mt-4"></div>
+          <div className="mt-4">BNB</div>
+          <div className="mt-4">USD</div>
+          
+          <div>1 day</div>
+          <div>0.40</div>
+          <div>$150</div>
+          
+          <div>3 days</div>
+          <div>0.90</div>
+          <div>$350</div>
+          
+          <div>7 days</div>
+          <div>1.70</div>
+          <div>$650</div>
         </div>
-          <div className="w-full bg-[#393E46] my-12 p-4 rounded-sm shadow-3xl h-[240px]">
-          <h3 className="w-10/12 mx-auto p-2 text-xl">Support</h3>
-          <p className="w-10/12 mx-auto p-2">If you have any queries regarding this site please click below and mail us your questions</p>
-          <Link href="mailto:naikn8113@gmail.com"><a className="shadow-3xl bg-gray-100 w-10/12 mx-auto block text-center p-2 rounded-md sm:mt-6 hover:bg-gray-400 text-black hover:text-black cursor-pointer">Contact support</a></Link>
+        
+       <h3 className="mt-12 text-lg">Advertising banners (420x60)</h3>
+        
+        <div className="max-w-[600px] w-11/12 mx-auto shadow-xl grid grid-cols-3 my-4 h-[200px] bg-[#2a323c] rounded-md">
+          <div className="mt-4"></div>
+          <div className="mt-4">BNB</div>
+          <div className="mt-4">USD</div>
+          
+          <div>1 day</div>
+          <div>0.30</div>
+          <div>$100</div>
+          
+          <div>3 days</div>
+          <div>0.70</div>
+          <div>$250</div>
+          
+          <div>7 days</div>
+          <div>1.20</div>
+          <div>$450</div>
         </div>
-        </div>
+        
+        <p className="mt-8">Mail us at <a className="text-green-400 cursor-pointer" href="mailto:naikn8113@gmail.com?subject=coin promotion">promote@coinparadise.com</a> for promotion</p>
       </div>
+    </>
   )
 }
 

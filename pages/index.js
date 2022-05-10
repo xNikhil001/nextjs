@@ -6,7 +6,7 @@ const OtherCoins = dynamic(()=>import('../components/OtherCoins'))
 export default function Home(){
   return(
     <>
-    <h1 className="max-w-[800px] w-11/12 mx-auto text-xl mb-4">Promoted Coins</h1>
+    <h1 className="max-w-[1000px] w-11/12 mx-auto text-xl mb-4">Promoted Coins</h1>
     <Promoted />
     <OtherCoins />
     </>

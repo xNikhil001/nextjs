@@ -2,7 +2,7 @@ import Link from "next/link"
 
 function coininfo({data}){
   return(
-    <div className="max-w-[700px] w-11/12 mx-auto bg-[#393E46] rounded-md p-4 shadow-3xl">
+    <div className="max-w-[700px] w-11/12 mx-auto bg-[#2a323c] rounded-md p-4 shadow-3xl">
       <div className="flex justify-between items-center">
         <img src={data.logo} width="100px" height="100px" className="rounded-md"/>
         <div className="flex flex-col w-6/12">

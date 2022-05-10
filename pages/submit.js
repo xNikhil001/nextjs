@@ -36,7 +36,6 @@ function Submit(){
   
   async function postFormData(){
     const res = await axios.post(postURI,formData);
-    
     if(res.data.success){
       setSubmitStatus(true);
       setTimeout(function() {
@@ -69,9 +68,11 @@ function Submit(){
   }
   return(
       <>
-      {submitStatus && (<div>Form Submitted</div>)}
-        <h3 className="max-w-screen-sm w-11/12 mx-auto mt-8 text-2xl mb-2">Submit your coin</h3>
-        <form className="max-w-screen-sm w-11/12 mx-auto shadow-lg rounded-lg mb-6 p-4">
+        <div className={`fixed top-[10%] sm:top-[5%] right-5 w-[350px] h-[50px] bg-gray-100 text-center text-green-800 font-black leading-[50px] rounded-md bg-green-300 shadow-3xl ${submitStatus? "block" : "hidden"}`}>
+          Your coin was submitted succesfully!
+        </div>
+        <form className="max-w-[650px] w-11/12 mx-auto shadow-lg rounded-lg mb-6 p-4">
+          <h3 className="w-full mx-auto text-2xl sm:w-11/12">Submit your coin</h3>
             <input className="input" name="coin_name" placeholder="Coin Name" type="text" value={formData.coin_name || ""} onChange={handleForm} />
             {error.nameError && error.nameError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             <input className="input" placeholder="Symbol" name="symbol" type="text" value={formData.symbol || ""} onChange={handleForm}/>
@@ -84,7 +85,7 @@ function Submit(){
              {error.addressError && error.addressError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             <input className="input" placeholder="Website URL" type="url" name="website" value={formData.website || ""} onChange={handleForm} />
              {error.websiteError && error.websiteError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
-            <select name="chain" value={formData.chain || ""} onChange={handleForm} className="w-full sm:w-11/12 bg-[#393E46] mx-auto block p-2 my-6 rounded-md outline-0 text-gray-300 hover:bg-[#3f3f3f] hover:text-gray-300 shadow-3xl">
+            <select name="chain" value={formData.chain || ""} onChange={handleForm} className="w-full sm:w-11/12 bg-[#2a323c] mx-auto block p-2 my-6 rounded-md outline-0 text-gray-300 hover:bg-[#505762] hover:text-gray-300 shadow-3xl">
               <option value="">Select Block Chain type</option>
               <option value="Ethereum">Ethereum</option>
               <option value="Binance Smart Chain">Binance Smart Chain</option>
@@ -100,7 +101,7 @@ function Submit(){
              {error.twitterError && error.twitterError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             <input className="input" placeholder="Telegram link" type="url" name="telegram" value={formData.telegram || ""} onChange={handleForm} />
             {error.telegramError && error.telegramError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
-            <button className="w-6/12 bg-[#4ECCA3] shadow-3xl mx-auto block p-2 my-6 rounded-md hover:bg-[#3f3f3f] hover:text-gray-300" onClick={submitForm}>Submit</button>
+            <button className="w-6/12 sm:w-4/12 bg-[aqua] shadow-3xl mx-auto block p-2 my-6 rounded-md hover:bg-[#232931] hover:border hover:border-[aqua] text-black font-black hover:text-gray-100 hover:shadow-none" onClick={submitForm}>Submit</button>
         </form>
       </>
     )

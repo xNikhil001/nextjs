@@ -12,12 +12,12 @@
 
 @layer components {
   .input {
-    @apply w-full sm:w-11/12 bg-[#393E46] mx-auto block p-2 my-6 rounded-md outline-0 placeholder-gray-300 hover:bg-[#3f3f3f] hover:text-gray-300 shadow-3xl;
+    @apply w-full sm:w-11/12 bg-[#2a323c] mx-auto block p-2 my-6 rounded-md outline-0 placeholder-gray-300 hover:bg-[#505762] hover:text-gray-300 shadow-3xl;
   }
   .links {
     @apply bg-gray-100 my-2 w-4/12 text-black text-center shadow-3xl rounded-sm
   }
   .pcLinks {
-    @apply text-xl
+    @apply text-xl hover:text-[#00ccff]
   }
 }
