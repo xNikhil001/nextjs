@@ -10,6 +10,10 @@ export default async function handler(req,res){
       referer: 'https://nextjs-dusky-gamma.vercel.app/',
     }
   }
-  const data = await axios.get(url,options)
-  res.status(200).send(data.data)
+  try {
+    const data = await axios.get(url,options)
+    res.status(200).send(data.data)
+  } catch (e) {
+    res.status(500).send({msg:"Error: could not fetch data."});
+  }
 }
