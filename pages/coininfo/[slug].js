@@ -3,7 +3,7 @@ import converter from '../../helpers/converter.js';
 import moment from 'moment';
 import { useState } from 'react';
 
-function coininfo({data}){
+function Coininfo({data}){
   const [text,setText] = useState(false);
   const handleText = ()=>{
     navigator.clipboard.writeText(data.address);
@@ -60,4 +60,4 @@ export async function getServerSideProps({params}){
   }
 }
 
-export default coininfo;
+export default Coininfo;
