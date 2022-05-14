@@ -58,18 +58,18 @@ function Navbar(){
           }).map((el)=>(<div key={el._id} className="w-11/12 mx-auto my-4 text-lg text-white" onClick={()=>viewCoinInfo(el._id)}>{el.name}</div>))}
           </div>
           </li>
-          <li><Link href="/"><a className={`pcLinks ${path == "/" ? 'text-[#00ccff]':''} transition ease-in duration-150`}>Home</a></Link></li>
-          <li><Link href="/promote"><a className={`pcLinks ${path == "/promote" ? 'text-[#00ccff]':''} transition ease-in duration-150`}>Promote</a></Link></li>
-          <li><Link href="/submit"><a className={`pcLinks ${path == "/submit" ? 'text-[#00ccff]':''} transition ease-in duration-150`} onClick={submitPage}>Submit</a></Link></li>
-          <li>{session? (<a className="pcLinks bg-[#00ccff] p-1 rounded-md text-black hover:border hover:border-[#00ccff] hover:bg-[#232931] hover:text-gray-100 transition ease-in duration-150" onClick={()=>signOut()}>Sign Out</a>) : (<a className="pcLinks bg-[#00ccff] p-1 rounded-md text-black hover:border hover:border-[#00ccff] hover:bg-[#232931] hover:text-gray-100 transition ease-in duration-150" onClick={()=>signIn()}>Sign In</a>)}</li>
+          <li><Link href="/submit"><a className={`pcLinks ${path == "/" ? 'text-[#a0dce6]':''} transition ease-in duration-150`}>Home</a></Link></li>
+          <li><Link href="/promote"><a className={`pcLinks ${path == "/promote" ? 'text-[#a0dce6]':''} transition ease-in duration-150`}>Promote</a></Link></li>
+          <li><Link href="/submit"><a className={`pcLinks ${path == "/submit" ? 'text-[#a0dce6]':''} transition ease-in duration-150`} onClick={submitPage}>Submit</a></Link></li>
+          <li>{session? (<a className="pcLinks bg-[#00ccff] p-1 rounded-md font-black bg-[#a0dce6] text-black hover:bg-[#232931] hover:border-[2px] hover:border-[#a0dce6] hover:text-gray-300 transition ease-in duration-150" onClick={()=>signOut()}>Sign Out</a>) : (<a className="pcLinks bg-[#00ccff] p-1 rounded-md font-black bg-[#a0dce6] text-black hover:bg-[#232931] hover:border-[2px] hover:border-[#a0dce6] hover:text-gray-300 transition ease-in duration-150" onClick={()=>signIn()}>Sign In</a>)}</li>
         </ul>
         <div className={`md:hidden absolute top-4 right-5`} onClick={toggleNav}>
-          <span className="text-3xl text-[aqua]">&#x2632;</span>
+          <span className="text-3xl text-[#a0dce6]">&#x2632;</span>
         </div>
         
         <ul className={`w-[70%] shadow-3xl z-50 fixed top-0 h-screen md:hidden bg-[#232931] text-gray-300 text-xl ${isNavOpen? "translate-x-0" : "-translate-x-full"} transition-all duration-300`}>
           <li className="absolute top-4 right-5">
-            <span className="text-3xl text-[aqua]" onClick={toggleNav}>&#x2715;</span>
+            <span className="text-3xl text-[#a0dce6]" onClick={toggleNav}>&#x2715;</span>
           </li>
           <li className="mt-[40%] mb-8 pb-4 border-b border-gray-500 w-11/12 mx-auto">
             <input type="search" placeholder="search coin..." className="w-full outline-0 mx-auto rounded-md p-2 block" value={coinName} onChange={handleChange}/>
@@ -83,10 +83,10 @@ function Navbar(){
           }).map((el)=>(<div key={el._id} className="w-11/12 mx-auto my-4 text-lg text-white" onClick={()=>viewCoinInfo(el._id)}>{el.name}</div>))}
           </div>
           </li>
-          <li className="mb-8 pb-4 border-b border-gray-500 w-11/12 mx-auto" onClick={toggleNav}><Link href="/"><a className={`hover:text-neutral-500 hover:text-[#00ccff] hover:transition-all duration-300 px-1 ${path == "/" ? 'text-[aqua]':''}`}>Home</a></Link></li>
-          <li className="mb-8 pb-4 border-b border-gray-500 w-11/12 mx-auto" onClick={toggleNav}><a onClick={submitPage} className={`hover:text-neutral-500 hover:transition-all duration-300 px-1 hover:text-[#00ccff] ${path == "/submit" ? 'text-[aqua]':''}`}>Submit</a></li>
-          <li className="mb-8 pb-4 border-b border-gray-500 w-11/12 mx-auto" onClick={toggleNav}><Link href="/promote"><a className={`hover:text-neutral-500 hover:transition-all hover:text-[#00ccff] duration-300 px-1 ${path == "/promote" ? 'text-[aqua]':''}`}>Promote</a></Link></li>
-          <li>{session? (<a className="pcLinks  p-2 bg-[aqua] text-[#0badad] font-black block w-11/12 text-center mx-auto rounded-md hover:border hover:border-[aqua] hover:bg-[#232931] hover:text-gray-100 transition ease-in duration-150 text-md" onClick={()=>signOut()}>Sign Out</a>) : (<a className="pcLinks  p-2 bg-[aqua] text-white block w-11/12 text-center mx-auto rounded-md hover:border hover:border-[aqua] hover:bg-[#232931] hover:text-gray-100 transition ease-in duration-150 text-lg" onClick={()=>signIn()}>Sign In</a>)}</li>
+          <li className="mb-8 pb-4 border-b border-gray-500 w-11/12 mx-auto" onClick={toggleNav}><Link href="/"><a className={`hover:transition-all duration-300 px-1 ${path == "/" ? 'text-[#a0dce6]':''}`}>Home</a></Link></li>
+          <li className="mb-8 pb-4 border-b border-gray-500 w-11/12 mx-auto" onClick={toggleNav}><a onClick={submitPage} className={`hover:transition-all duration-300 px-1 ${path == "/submit" ? 'text-[#a0dce6]':''}`}>Submit</a></li>
+          <li className="mb-8 pb-4 border-b border-gray-500 w-11/12 mx-auto" onClick={toggleNav}><Link href="/promote"><a className={`hover:transition-all duration-300 px-1 ${path == "/promote" ? 'text-[#a0dce6]':''}`}>Promote</a></Link></li>
+          <li>{session? (<a className="pcLinks  p-2 font-black block w-11/12 text-center mx-auto rounded-md transition ease-in duration-150 text-md bg-[#a0dce6] text-black hover:bg-[#232931] hover:border-[2px] hover:border-[#a0dce6] hover:text-gray-300" onClick={()=>signOut()}>Sign Out</a>) : (<a className="pcLinks p-2 block w-11/12 font-black text-center mx-auto rounded-md transition ease-in duration-150 text-md bg-[#a0dce6] text-black hover:bg-[#232931] hover:border-[2px] hover:border-[#a0dce6] hover:text-gray-300" onClick={()=>signIn()}>Sign In</a>)}</li>
           <li className="flex justify-between mt-[15%] w-6/12 ml-[14px]">
             <Link href={mediaLinks.instagram}><a><img src="/instagram.svg" alt="img" width="35px" height="35px" /></a></Link>
             <Link href={mediaLinks.twitter}><a><img src="/twitter.svg" alt="img" width="35px" height="35px" /></a></Link>

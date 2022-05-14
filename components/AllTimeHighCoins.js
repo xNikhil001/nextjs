@@ -70,7 +70,7 @@ function AllTimeHigh(){
       <span className="flex flex-col w-5/12 sm:w-3/12">{el.symbol} <span className="text-sm">{el.name}</span></span>
       <span className="hidden sm:flex w-2/12">{converter.format(el.marketcap)}</span>
       <span className="hidden sm:flex w-2/12">{moment(el.release.split('/').reverse().join(""), "YYYYMMDD").fromNow()}</span>
-      <button className={`w-1/5 sm:w-1/12 py-1 border border-gray-500 rounded-md text-md text-gray-300`} onClick={(e)=>{e.stopPropagation();voteBtn(el._id)}}><i className="fa-solid fa-circle-arrow-up mr-1"></i>{el.votes}</button>
+      <button className={`w-1/5 sm:w-1/12 py-1 border-[1px] border-[#a0dce6] rounded-md text-md text-gray-300`} onClick={(e)=>{e.stopPropagation();voteBtn(el._id)}}><i className="fa-solid fa-circle-arrow-up mr-1"></i>{el.votes}</button>
     </div>)
   return(
     <>

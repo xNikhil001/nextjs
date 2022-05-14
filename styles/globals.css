@@ -15,9 +15,18 @@
     @apply w-full sm:w-11/12 bg-[#2a323c] mx-auto block p-2 my-6 rounded-md outline-0 placeholder-gray-300 hover:bg-[#505762] hover:text-gray-300 shadow-3xl;
   }
   .links {
-    @apply bg-gray-100 my-2 w-4/12 text-black text-center shadow-3xl rounded-sm
+    @apply bg-[#0dd1d7] my-2 w-4/12 text-gray-800 text-center font-black shadow-3xl rounded-md p-1
   }
   .pcLinks {
-    @apply text-xl hover:text-[#00ccff]
+    @apply text-xl
   }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }

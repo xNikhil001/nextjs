@@ -87,10 +87,11 @@ function Submit(){
              {error.websiteError && error.websiteError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             <select name="chain" value={formData.chain || ""} onChange={handleForm} className="w-full sm:w-11/12 bg-[#2a323c] mx-auto block p-2 my-6 rounded-md outline-0 text-gray-300 hover:bg-[#505762] hover:text-gray-300 shadow-3xl">
               <option value="">Select Block Chain type</option>
-              <option value="Ethereum">Ethereum</option>
-              <option value="Binance Smart Chain">Binance Smart Chain</option>
-              <option value="Polygon">Polygon</option>
-              <option value="Bitcoin">Bitcoin</option>
+              <option value="ETH">Ethereum</option>
+              <option value="BSC">Binance Smart Chain</option>
+              <option value="MATIC">Polygon</option>
+              <option value="TRX">TRON</option>
+              <option value="SOL">SOLANA</option>
             </select>
              {error.chainError && error.chainError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             <input className="input" type="date" name="release" value={formData.release || ""} onChange={handleForm} />
@@ -101,7 +102,7 @@ function Submit(){
              {error.twitterError && error.twitterError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             <input className="input" placeholder="Telegram link" type="url" name="telegram" value={formData.telegram || ""} onChange={handleForm} />
             {error.telegramError && error.telegramError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
-            <button className="w-6/12 sm:w-4/12 bg-[aqua] shadow-3xl mx-auto block p-2 my-6 rounded-md hover:bg-[#232931] hover:border hover:border-[aqua] text-black font-black hover:text-gray-100 hover:shadow-none" onClick={submitForm}>Submit</button>
+            <button className="w-6/12 sm:w-4/12 bg-[#a0dce6] shadow-3xl mx-auto block p-2 my-6 rounded-md hover:bg-[#232931] hover:border hover:border-[#a0dce6] text-black font-black hover:text-gray-100 hover:shadow-none" onClick={submitForm}>Submit</button>
         </form>
       </>
     )
