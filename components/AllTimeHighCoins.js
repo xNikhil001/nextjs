@@ -7,6 +7,8 @@ import {useStore} from '../zustand';
 import { useSession,signIn } from "next-auth/react";
 import moment from 'moment';
 import converter from '../helpers/converter.js'
+import { ToastContainer, toast , Flip } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Skeleton = dynamic(()=>import('./Skeleton.js'))
 
 const fetcher = async (url) => {
@@ -22,7 +24,15 @@ function AllTimeHigh(){
   const voteURI = '/api/coins'
   const setSignInToast = useStore(state => state.setSignInToast)
   const [isBtnActive,setIsBtnActive] = useState(false);
-  
+  const voteInfo = () => toast.info('You can vote once 24 hours!', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: true,
+    pauseOnHover: true,
+    draggable: false,
+    progress: undefined,
+    theme: "light",
+  });
   const { data,error,mutate } = useSWR(url,fetcher);
   
   if(!data){
@@ -52,7 +62,7 @@ function AllTimeHigh(){
       //mutate(data)
       const res = await axios.patch(voteURI,userData);
       if(!res.data.success){
-        alert(res.data.vote)
+        voteInfo();
       }
       mutate(data)
     }
@@ -74,6 +84,16 @@ function AllTimeHigh(){
     </div>)
   return(
     <>
+      <ToastContainer 
+        position="top-left"
+        autoClose={true}
+        newestOnTop
+        rtl={false}
+        pauseOnFocusLoss
+        draggable={false}
+        limit={5}
+        transition={Flip}
+      />
       {displayData}
       <i onClick={()=>{setPerPage(perPage += 50)}} className={`w-full text-3xl text-center animate-bounce fa-solid fa-arrow-down ${perPage >= len ? "hidden" : ""}`}></i>
     </>

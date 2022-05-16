@@ -1,29 +1,22 @@
 import axios from 'axios';
 
 export default async function handler(req,res){
-  const token = process.env.TOKEN
-  const options = {
-    headers: {
-      'Content-Type':'application/json',
-      referer: 'https://nextjs-dusky-gamma.vercel.app/',
-    }
-  }
-  const url = `https://cp0099.herokuapp.com/api/coins?verify=${token}`;
-  const loc = `http://localhost:8000/api/coins?verify=${token}`
+  const url = `https://cp0099.herokuapp.com/api/coins`;
+  const loc = `http://localhost:8000/api/coins`
   if(req.method == 'PATCH'){
     const userData = {
       ID: req.body.ID,
       uid: req.body.uid
     }
     try {
-      const data = await axios.patch(url,userData,options);
+      const data = await axios.patch(url,userData);
       res.status(200).send(data.data)
     } catch (err) {
       res.status(500).send({msg:"An error occurred"})
     }
   }else if(req.method == 'POST'){
     try {
-      const response = await axios.post(url,req.body,options)
+      const response = await axios.post(url,req.body)
       res.status(200).send(response.data);
     } catch (err) {
       res.status(500).send({msg:"An error occurred!!"});
@@ -31,7 +24,7 @@ export default async function handler(req,res){
   }
   else{
     try {
-      const data = await axios.get(url,options)
+      const data = await axios.get(url)
       res.status(200).send(data.data)
     } catch (e) {
       res.status(500).send({msg:"Error: could not fetch data."});

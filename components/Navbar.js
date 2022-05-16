@@ -43,7 +43,7 @@ function Navbar(){
   }
     return(
       <nav className="flex justify-between w-full h-16 items-center shadow-xl z-50 bg-[#232931] fixed top-0">
-        <div className="absolute top-2 left-2 xl:left-[10%]"><Link href="/"><a><img src="/final.png" width="220px" height="35px" /></a></Link></div>
+        <div className="absolute top-2 left-2 xl:left-[10%]"><Link href="/"><a><img src="/final.png" width="220px" height="35px" alt="LOGO" /></a></Link></div>
         <div></div>
         <ul className="flex items-center hidden md:flex sm:mr-[5%]">
           <li className="absolute top-3 right-[30%]">
