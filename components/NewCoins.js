@@ -3,7 +3,6 @@ import {useState} from 'react';
 import {useRouter} from 'next/router';
 import dynamic from 'next/dynamic';
 import useSWR from 'swr';
-import {useStore} from '../zustand';
 import { useSession,signIn } from "next-auth/react";
 import moment from 'moment';
 import converter from '../helpers/converter.js'
@@ -24,7 +23,6 @@ function NewCoins(){
   const url = '/api/coins/new'
   const voteURI = '/api/coins'
 
-  const setSignInToast = useStore(state => state.setSignInToast)
   const [isBtnActive,setIsBtnActive] = useState(false);
   const voteInfo = () => toast.info('You can vote once 24 hours!', {
     position: "top-right",
@@ -44,11 +42,6 @@ function NewCoins(){
   }
   
   const voteBtn = async (ID)=>{
-    // DISABLE BUTTON
-    setIsBtnActive(true);
-    setTimeout(function() {
-      setIsBtnActive(false)
-    }, 1000);
     // CHECK IF USER LOGGED IN
     if(!session){
       signIn();

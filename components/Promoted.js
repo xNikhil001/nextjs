@@ -4,7 +4,6 @@ import {useState} from 'react';
 import {useRouter} from 'next/router';
 import dynamic from 'next/dynamic';
 import useSWR,{useSWRConfig} from 'swr';
-import {useStore} from '../zustand';
 import { useSession,signIn } from "next-auth/react";
 import moment from 'moment';
 import converter from '../helpers/converter.js';
@@ -22,9 +21,9 @@ function Promoted(){
   const [perPage,setPerPage] = useState(2);
   const router = useRouter();
   const { data:session } = useSession();
-  const url = '/api/coins/promoted'
-  const voteURI = '/api/coins'
-  const setSignInToast = useStore(state => state.setSignInToast)
+  const url = '/api/coins/promoted';
+  const voteURI = '/api/coins';
+  
   const [isBtnActive,setIsBtnActive] = useState(false);
   const voteInfo = () => toast.info('You can vote once every 24 hours!', {
     position: "top-right",
