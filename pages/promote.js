@@ -12,7 +12,7 @@ function Promote(){
         <h3 className="text-lg mt-2">Promote your coin with us to get instant visibility on top</h3>
         <h3 className="mt-12 text-lg">Promoted coins section</h3>
         
-        <div className="max-w-[600px] w-11/12 mx-auto shadow-xl grid grid-cols-3 my-4 h-[200px] bg-[#2a323c] rounded-md">
+        <div className="max-w-[600px] w-11/12 mx-auto shadow-xl grid grid-cols-3 my-4 h-[200px] backdrop-blur-sm bg-[#2a323c]/50 rounded-md">
           <div className="mt-4"></div>
           <div className="mt-4">BNB</div>
           <div className="mt-4">USD</div>
@@ -32,7 +32,7 @@ function Promote(){
         
        <h3 className="mt-12 text-lg">Advertising banners (420x60)</h3>
         
-        <div className="max-w-[600px] w-11/12 mx-auto shadow-xl grid grid-cols-3 my-4 h-[200px] bg-[#2a323c] rounded-md">
+        <div className="max-w-[600px] w-11/12 mx-auto shadow-xl grid grid-cols-3 my-4 h-[200px] backdrop-blur-sm bg-[#2a323c]/50 rounded-md">
           <div className="mt-4"></div>
           <div className="mt-4">BNB</div>
           <div className="mt-4">USD</div>

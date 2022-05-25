@@ -6,7 +6,7 @@ import { ToastContainer, toast , Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
   
 function Submit(){
-  const postURI = '/api/coins';
+  const postURI = 'https://cp0099.herokuapp.com/api/coins';
   const [loading,setLoading] = useState(true);
   const [formLoading,setFormLoading] = useState(false);
   const { data: session } = useSession();
@@ -115,7 +115,7 @@ function Submit(){
              {error.addressError && error.addressError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             <input className="input" placeholder="Website URL" type="url" name="website" value={formData.website || ""} onChange={handleForm} />
              {error.websiteError && error.websiteError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
-            <select name="chain" value={formData.chain || ""} onChange={handleForm} className="w-full sm:w-11/12 bg-[#2a323c] mx-auto block p-2 my-6 rounded-md outline-0 text-gray-300 hover:bg-[#3f4b5a] hover:text-gray-300 shadow-3xl">
+            <select name="chain" value={formData.chain || ""} onChange={handleForm} className="w-full sm:w-11/12 backdrop-blur-sm bg-[#2a323c]/50 mx-auto block p-2 my-6 rounded-md outline-0 text-gray-300 hover:bg-[#2a323c]/90 shadow-3xl">
               <option value="">Select Block Chain type</option>
               <option value="ETH">Ethereum</option>
               <option value="BSC">Binance Smart Chain</option>

@@ -6,13 +6,13 @@
 
 @layer base {
   body {
-    @apply bg-[#232931] text-gray-100
+    @apply bg-[url('/2.webp')] bg-cover text-gray-100
   }
 }
 
 @layer components {
   .input {
-    @apply w-full sm:w-11/12 bg-[#2a323c] mx-auto block p-2 my-6 rounded-md outline-0 placeholder-gray-300 hover:bg-[#3f4b5a] hover:text-gray-300 shadow-3xl;
+    @apply w-full sm:w-11/12 mx-auto block p-2 my-6 rounded-md outline-0 placeholder-gray-300 hover:bg-[#2a323c]/90 hover:text-gray-300 shadow-3xl backdrop-blur-sm bg-[#2a323c]/50;
   }
   .pcLinks {
     @apply text-xl
