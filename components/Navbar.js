@@ -2,12 +2,11 @@ import {useState,useEffect} from 'react';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import { useSession,signIn,signOut } from "next-auth/react";
-import axios from 'axios';
 import useSWR from 'swr';
 
 const fetcher = async (url) => {
-  const data = await axios.get(url).then((res)=>res.data.result);
-  return data;
+  const data = await fetch(url).then((data)=>data.json())
+  return data.result;
 };
 
 function Navbar(){
@@ -52,7 +51,7 @@ function Navbar(){
   }
     return(
       <nav className={`flex justify-between w-full h-16 items-center shadow-xl  z-50 fixed top-0 ${isScroll?"backdrop-blur-sm bg-[#2a323c]/50" : ""}`}>
-        <div className="absolute top-2 left-2 xl:left-[10%]"><Link href="/"><a><img src="/final.png" width="220px" height="35px" alt="LOGO" /></a></Link></div>
+        <div className="absolute top-2 left-2 xl:left-[10%]"><Link href="/"><a>COINPARADISE</a></Link></div>
         <div></div>
         <ul className="flex items-center hidden md:flex sm:mr-[5%]">
           <li className="absolute top-3 right-[30%]">

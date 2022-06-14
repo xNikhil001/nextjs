@@ -1,9 +1,6 @@
 import {useState,useEffect} from 'react';
 import Validate from '../services/Validate.js';
-import axios from 'axios';
 import { useSession,getSession,signIn } from "next-auth/react";
-import { ToastContainer, toast , Flip } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
   
 function Submit(){
   const postURI = 'https://cp0099.herokuapp.com/api/coins';
@@ -29,43 +26,25 @@ function Submit(){
     address: "",
     website: "",
     chain: "",
-    release: "",
+    release: {
+      year: "",
+      month: "",
+      day: ""
+    },
     marketcap: "",
     twitter: "",
     telegram: ""
   });
   const [error,setError] = useState({});
   
-  const formFail = () => toast.error('Error submitting your coin!', {
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: true,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: false,
-    progress: undefined,
-    theme: "light"
-  });
-  const formSuccess = () => toast.success('Your coin was added successfully!', {
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: true,
-    pauseOnHover: true,
-    draggable: false,
-    progress: undefined,
-    theme: "light",
-  });
-  
   async function postFormData(){
     setFormLoading(true);
     const res = await axios.post(postURI,formData);
-    if(res.data.success){
-      formSuccess();
+    if(res.success){
       setFormLoading(false);
     }
-    if(res.data.errorStatus){
-      formFail();
-      setError(res.data.errors);
+    if(res.errorStatus){
+      setError(res.errors);
       setFormLoading(false);
     }
   }
@@ -91,16 +70,6 @@ function Submit(){
   }
   return(
       <>
-        <ToastContainer 
-          position="top-left"
-          autoClose={true}
-          newestOnTop
-          rtl={false}
-          pauseOnFocusLoss
-          draggable={false}
-          limit={5}
-          transition={Flip}
-        />
         <form className="max-w-[650px] w-11/12 mx-auto shadow-lg rounded-lg mb-6 p-4">
           <h3 className="w-full mx-auto text-2xl sm:w-11/12">Submit your coin</h3>
             <input className="input" name="coin_name" placeholder="Coin Name" type="text" value={formData.coin_name || ""} onChange={handleForm} />
