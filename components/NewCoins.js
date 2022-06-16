@@ -11,7 +11,7 @@ const fetcher = async (url) => {
   return data.result;
 };
   
-function NewCoins(){
+function NewCoins({newc}){
   const [perPage,setPerPage] = useState(50);
   const router = useRouter();
   const { data:session } = useSession();
@@ -55,10 +55,10 @@ function NewCoins(){
   const viewCoinInfo = (ID)=>{
     router.push(`/coininfo/${ID}`);
   };
-  //const data1 = (data || []);
+  
   const len = (data || []).length;
   const arr = (data || []).slice(0,perPage);
-  //console.log(arr);
+  
   const displayData = arr.map((el)=><div className="max-w-[1000px] w-11/12 mx-auto my-0 flex justify-between items-center backdrop-blur-sm bg-[#2a323c]/50 p-3 shadow-3xl rounded-md" key={el._id} onClick={()=>viewCoinInfo(el._id)}>
       <img src={el.logo} width="37px" height="37px" alt="LOGO" className="rounded-sm"/>
       <span className="flex flex-col w-5/12 sm:w-3/12">{el.symbol} <span className="text-sm">{el.name}</span></span>
