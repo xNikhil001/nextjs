@@ -21,6 +21,6 @@ export default NextAuth( {
       return session
     } 
   },
-  secret: process.env.SECRET,
+  secret: process.env.SECRET || "3l6PjG+8xakjhoQeX6oeMQNR2QZMb4bd6QnK1acu+0U=",
   debug:true
 })
