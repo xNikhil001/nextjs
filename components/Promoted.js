@@ -6,7 +6,7 @@ import { useSession,signIn } from "next-auth/react";
 import converter from '../helpers/converter.js'
 import checkDate from '../helpers/time.js'
   
-function Promoted({arr}){
+function Promoted({arr,fn}){
   const router = useRouter();
   const { data:session } = useSession();
   const url = 'https://cp0099.herokuapp.com/api/coins/promoted';
@@ -43,7 +43,7 @@ function Promoted({arr}){
     router.push(`/coininfo/${ID}`);
   };
   
-  const displayData = arr.map((el)=><div className="max-w-[1000px] w-11/12 mx-auto my-0 flex justify-between items-center backdrop-blur-sm bg-[#2a323c]/50 shadow-3xl p-3 rounded-md" key={el._id} onClick={()=>viewCoinInfo(el._id)}>
+  const displayData = arr.map((el)=><div className="max-w-[1000px] w-11/12 mx-auto my-0 flex justify-between items-center shadow-4xl p-3 rounded-sm" key={el._id} onClick={()=>viewCoinInfo(el._id)}>
       <img src={el.logo} width="37px" height="37px" alt="LOGO" className="rounded-sm"/>
       <span className="flex flex-col w-5/12 sm:w-3/12">{el.symbol} <span className="text-sm">{el.name}</span></span>
       <span className="hidden sm:flex w-2/12">{converter.format(el.marketcap)}</span>

@@ -12,7 +12,7 @@
 
 @layer components {
   .input {
-    @apply w-full sm:w-11/12 mx-auto block p-2 my-6 rounded-md outline-0 placeholder-gray-300 hover:bg-[#2a323c]/90 hover:text-gray-300 shadow-3xl backdrop-blur-sm bg-[#2a323c]/50;
+    @apply bg-[#262c40] shadow-4xl rounded-sm p-2 outline-0 hover:bg-gray-500
   }
   .pcLinks {
     @apply text-xl

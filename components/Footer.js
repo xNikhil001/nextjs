@@ -11,7 +11,7 @@ export default function Footer(){
       <div className="flex sm:w-3/12 w-9/12 justify-evenly mx-auto p-6">
         <Link href={mediaLinks.instagram}><a><img src="/instagram.svg" alt="img" width="35px" height="35px" /></a></Link>
         <Link href={mediaLinks.twitter}><a><img src="/twitter.svg" alt="img" width="35px" height="35px" /></a></Link>
-        <Link href={mediaLinks.telegram}><a><img src="/telegram.svg" alt="img" width="35px" height="35px" /></a></Link>
+        <Link href={mediaLinks.telegram}><a className="hover:bg-[#7e0fff] rounded-[50%]"><img src="/telegram.svg" alt="img" width="35px" height="35px"/></a></Link>
       </div>
       <ul className="my-4">
         <li><Link href="/disclaimer"><a>Disclaimer</a></Link></li>

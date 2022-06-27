@@ -14,13 +14,14 @@ function Navbar(){
   const { data: session } = useSession();
   const router = useRouter();
   const [isNavOpen,setIsNavOpen] = useState(false);
+  const [isSearchOpen,setIsSearchOpen] = useState(false);
   const [isScroll,setIsScroll] = useState(false);
   const [coinName,setCoinName] = useState("");
   const { data,error } = useSWR(url,fetcher);
   
   useEffect(()=>{
     document.addEventListener("scroll",(e)=>{
-      const bgDrop = window.scrollY > 100? true : false;
+      const bgDrop = window.scrollY > 20? true : false;
       setIsScroll(bgDrop);
     });
   },[]);
@@ -33,6 +34,12 @@ function Navbar(){
   const path = router.pathname;
   const toggleNav = ()=>{
     setIsNavOpen(!isNavOpen);
+    if(isSearchOpen) setIsSearchOpen(false)
+  }
+  const toggleSearch = ()=>{
+    setIsSearchOpen(!isSearchOpen);
+    if(isNavOpen) setIsNavOpen(false)
+    if(!isSearchOpen) setCoinName("")
   }
   const handleChange = (e)=>{
     setCoinName(e.target.value)
@@ -46,62 +53,55 @@ function Navbar(){
   }
   const viewCoinInfo = (ID) =>{
     router.push(`/coininfo/${ID}`)
-    setIsNavOpen(!isNavOpen)
+    setIsSearchOpen(false)
     setCoinName("")
   }
     return(
-      <nav className={`flex justify-between w-full h-16 items-center shadow-xl  z-50 fixed top-0 ${isScroll?"backdrop-blur-sm bg-[#2a323c]/50" : ""}`}>
-        <div className="absolute top-2 left-2 xl:left-[10%]"><Link href="/"><a>COINPARADISE</a></Link></div>
-        <div></div>
-        <ul className="flex items-center hidden md:flex sm:mr-[5%]">
-          <li className="absolute top-3 right-[30%]">
-            <input type="search" placeholder="search coin..." className="w-6/12 block outline-0 rounded-md p-2" value={coinName} onChange={handleChange}/>
-            <div className="max-h-[150px] overflow-scroll bg-[#2a323c] rounded-md w-6/12">
-          {items.length !=0 && items.filter((val)=>{
+      <header className={`flex flex-col w-full fixed top-0 items-center z-50 bg-white shadow-6xl`}>
+       <nav className="h-12 flex items-center justify-between w-11/12 mx-auto">
+         
+         <div className="text-2xl">
+           <Link href="/"><a>COINPARADISE</a></Link>
+         </div>
+         
+         <div className="flex">
+         <div className="mr-8">
+           {!isSearchOpen && <img src="/search.svg" width="30px"  height="30px" onClick={toggleSearch}
+           />}
+           {isSearchOpen && <img src="/x.svg" width="20px"  height="20px" onClick={toggleSearch}
+             className="mr-[6px]"
+           />}
+         </div>
+         
+         <div className="w-[30px] relative" onClick={toggleNav}>
+           <div className={`w-11/12 h-[3px] bg-[#7e0fff] absolute top-1/2 left-1/2 ${isNavOpen ? 'transform -translate-x-1/2 -translate-y-1/2 -rotate-[45deg]' : 'transform -translate-x-1/2 -translate-y-[12px]'} transition-all duration-300`}>
+           </div>
+           <div className={`w-11/12 h-[3px] bg-[#7e0fff] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ${isNavOpen? 'w-0' : '' } transition-all duration-300`}>
+           </div>
+           <div className={`w-11/12 h-[3px] bg-[#7e0fff] absolute top-1/2 left-1/2 ${isNavOpen? 'transform -translate-x-1/2 -translate-y-1/2 rotate-[45deg]' : 'transform -translate-x-1/2 translate-y-[8px]' } transition-all duration-300`}>
+           </div>
+         </div>
+         </div>
+       </nav>
+       { isNavOpen && (<ul className="w-full h-screen bg-white shadow-4xl text-center text-xl">
+         <li className={`p-4 w-4/12 mx-auto mt-[25%] ${path == '/'? 'text-[#7e0fff]' : ''}`}><Link href="/"><a onClick={toggleNav}>Home</a></Link></li>
+         <li className={`p-4 w-4/12 mx-auto ${path == '/submit'? 'text-[#7e0fff]' : ''}`}><Link href="/submit"><a onClick={toggleNav}>Submit</a></Link></li>
+         <li className={`p-4 w-4/12 mx-auto ${path == '/promote'? 'text-[#7e0fff]' : ''}`}><Link href="/promote"><a onClick={toggleNav}>Promote</a></Link></li>
+       </ul>)}
+       
+       { isSearchOpen && (<div className="w-full h-screen bg-white shadow-4xl text-center text-gray-600">
+       <input type="search" placeholder="search coin..." className="bg-zinc-100 p-2 w-11/12 mt-4 rounded-sm outline-0 border border-gray-200" value={coinName} onChange={handleChange}/>
+       <div className="max-h-[500px] h-auto w-11/12 bg-zinc-100 mx-auto overflow-scroll rounded-b-sm">
+         {items.length !=0 && items.filter((val)=>{
             if(coinName == ""){
               return ""
             }else if(val.name.toLowerCase().includes(coinName.toLowerCase())){
               return val;
             }
-          }).map((el)=>(<div key={el._id} className="w-11/12 mx-auto my-4 text-lg text-white" onClick={()=>viewCoinInfo(el._id)}>{el.name}</div>))}
-          </div>
-          </li>
-          <li><Link href="/submit"><a className={`pcLinks ${path == "/" ? 'text-[#a0dce6]':''} transition ease-in duration-150`}>Home</a></Link></li>
-          <li><Link href="/promote"><a className={`pcLinks ${path == "/promote" ? 'text-[#a0dce6]':''} transition ease-in duration-150`}>Promote</a></Link></li>
-          <li><Link href="/submit"><a className={`pcLinks ${path == "/submit" ? 'text-[#a0dce6]':''} transition ease-in duration-150`} onClick={submitPage}>Submit</a></Link></li>
-          <li>{session? (<a className="pcLinks p-1 rounded-md font-black bg-[#a0dce6] text-black hover:bg-[#232931] hover:border-[2px] hover:border-[#a0dce6] hover:text-gray-300 transition ease-in duration-150" onClick={()=>signOut()}>Sign Out</a>) : (<a className="pcLinks p-1 rounded-md font-black bg-[#a0dce6] text-black hover:bg-[#232931] hover:border-[2px] hover:border-[#a0dce6] hover:text-gray-300 transition ease-in duration-150" onClick={()=>signIn()}>Sign In</a>)}</li>
-        </ul>
-        <div className={`md:hidden absolute top-4 right-5`} onClick={toggleNav}>
-          <span className="text-3xl text-[#1BA098]">&#x2632;</span>
-        </div>
-        
-        <ul className={`w-[70%] shadow-3xl z-50 fixed top-0 h-screen md:hidden bg-[#000] text-gray-300 text-xl ${isNavOpen? "translate-x-0" : "-translate-x-full"} transition-all duration-300`}>
-          <li className="absolute top-4 right-5">
-            <span className="text-3xl text-[#a0dce6]" onClick={toggleNav}>&#x2715;</span>
-          </li>
-          <li className="mt-[40%] mb-8 pb-4 border-b border-gray-500 w-11/12 mx-auto">
-            <input type="search" placeholder="search coin..." className="w-full outline-0 mx-auto rounded-md p-2 block" value={coinName} onChange={handleChange}/>
-            <div className="max-h-[150px] overflow-scroll bg-[#2a323c] rounded-md">
-          {items.length !=0 && items.filter((val)=>{
-            if(coinName == ""){
-              return ""
-            }else if(val.name.toLowerCase().includes(coinName.toLowerCase())){
-              return val;
-            }
-          }).map((el)=>(<div key={el._id} className="w-11/12 mx-auto my-4 text-lg text-white" onClick={()=>viewCoinInfo(el._id)}>{el.name}</div>))}
-          </div>
-          </li>
-          <li className="mb-8 pb-4 border-b border-gray-500 w-11/12 mx-auto" onClick={toggleNav}><Link href="/"><a className={`hover:transition-all duration-300 px-1 ${path == "/" ? 'text-[#a0dce6]':''}`}>Home</a></Link></li>
-          <li className="mb-8 pb-4 border-b border-gray-500 w-11/12 mx-auto" onClick={toggleNav}><a onClick={submitPage} className={`hover:transition-all duration-300 px-1 ${path == "/submit" ? 'text-[#a0dce6]':''}`}>Submit</a></li>
-          <li className="mb-8 pb-4 border-b border-gray-500 w-11/12 mx-auto" onClick={toggleNav}><Link href="/promote"><a className={`hover:transition-all duration-300 px-1 ${path == "/promote" ? 'text-[#a0dce6]':''}`}>Promote</a></Link></li>
-          <li>{session? (<a className="pcLinks p-2 font-black block w-11/12 text-center mx-auto rounded-md transition ease-in duration-150 text-md bg-[#a0dce6] text-black hover:bg-[#232931] hover:border-[2px] hover:border-[#a0dce6] hover:text-gray-300" onClick={()=>signOut()}>Sign Out</a>) : (<a className="pcLinks p-2 block w-11/12 font-black text-center mx-auto rounded-md transition ease-in duration-150 text-md bg-[#a0dce6] text-black hover:bg-[#232931] hover:border-[2px] hover:border-[#a0dce6] hover:text-gray-300" onClick={()=>signIn()}>Sign In</a>)}</li>
-          <li className="flex justify-between mt-[15%] w-6/12 ml-[14px]">
-            <Link href={mediaLinks.instagram}><a><img src="/instagram.svg" alt="img" width="35px" height="35px" /></a></Link>
-            <Link href={mediaLinks.twitter}><a><img src="/twitter.svg" alt="img" width="35px" height="35px" /></a></Link>
-            <Link href={mediaLinks.telegram}><a><img src="/telegram.svg" alt="img" width="35px" height="35px" /></a></Link>
-          </li>
-        </ul>
-      </nav>
+          }).map((el)=>(<div key={el._id} className="text-black py-3 px-2 text-left text-gray-600" onClick={()=>viewCoinInfo(el._id)}>{el.name}</div>))}
+       </div>
+       </div>)}
+      </header>
     )
 }
 
