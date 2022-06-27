@@ -89,25 +89,25 @@ function Submit(){
         <form className="max-w-[700px] w-11/12 mx-auto">
           <h3 className="w-full mx-auto text-2xl">Submit your coin</h3>
             <label className="flex flex-col mt-4">
-            Coin Name
+              Coin Name
             </label>
             <input className="input" name="name" type="text" value={formData.name || ""} onChange={handleForm} />
             {error.nameError && error.nameError.map((el)=>(<div className="text-red-400 w-11/12 mx-auto" key={Math.random()}>-{el}</div>))}
             
             <label className="flex flex-col mt-4">
-            Symbol
+              Symbol
             </label>
             <input className="input" name="symbol" type="text" value={formData.symbol || ""} onChange={handleForm}/>
              {error.symbolError && error.symbolError.map((el)=>(<div className="text-red-400 w-11/12 mx-auto" key={Math.random()}>-{el}</div>))}
              
             <label className="flex flex-col mt-4">
-            Logo
+              Logo
             </label>
             <input className="input" type="url" name="logo" value={formData.logo || ""} onChange={handleForm} />
              {error.logoError && error.logoError.map((el)=>(<div className="text-red-400 w-11/12 mx-auto" key={Math.random()}>-{el}</div>))}
              
             <label className="flex flex-col mt-4">
-            Description
+              Description
             </label>
             <textarea className="input" name="description" value={formData.description || ""} onChange={handleForm} cols="40" rows="6"></textarea>
              {error.descError && error.descError.map((el)=>(<div className="text-red-400 w-11/12 mx-auto" key={Math.random()}>-{el}</div>))}
@@ -125,7 +125,7 @@ function Submit(){
              {error.websiteError && error.websiteError.map((el)=>(<div className="text-red-400 w-11/12 mx-auto" key={Math.random()}>-{el}</div>))}
              
             <label className="flex flex-col mt-4">
-            Block Chain
+              Block Chain
             </label>
             <select name="chain" value={formData.chain || ""} onChange={handleForm} className="bg-gray-300 rounded-sm p-2 outline-0 w-full">
               <option value=""></option>
@@ -138,7 +138,7 @@ function Submit(){
              {error.chainError && error.chainError.map((el)=>(<div className="text-red-400 w-11/12 mx-auto" key={Math.random()}>-{el}</div>))}
              
             <label className="flex flex-col mt-4">
-            Release date
+              Release date
             </label>
             <div className="grid grid-cols-3 gap-1">
             <div className="flex flex-col">
@@ -168,19 +168,19 @@ function Submit(){
              {error.releaseError && error.releaseError.map((el)=>(<div className="text-red-400 w-11/12 mx-auto" key={Math.random()}>-{el}</div>))}
              
             <label className="flex flex-col mt-4">
-            Market Capital
+              Market Capital
             </label>
             <input className="input" type="number" name="marketcap" value={formData.marketcap || ""} onChange={handleForm} />
              {error.marketcapError && error.marketcapError.map((el)=>(<div className="text-red-400 w-11/12 mx-auto" key={Math.random()}>-{el}</div>))}
              
-            <label className="flex flex-col mt-4">
-            Twitter Link
-            </label>
+           <label className="flex flex-col mt-4">
+             Twitter Link
+           </label>
            <input className="input" type="url" name="twitter" value={formData.twitter || ""} onChange={handleForm} />
              {error.twitterError && error.twitterError.map((el)=>(<div className="text-red-400 w-11/12 mx-auto" key={Math.random()}>-{el}</div>))}
              
             <label className="flex flex-col mt-4">
-            Telegram Link
+              Telegram Link
             </label>
             <input className="input" type="url" name="telegram" value={formData.telegram || ""} onChange={handleForm} />
             {error.telegramError && error.telegramError.map((el)=>(<div className="text-red-400 w-11/12 mx-auto" key={Math.random()}>-{el}</div>))}
