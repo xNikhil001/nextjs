@@ -72,36 +72,36 @@ function Submit(){
       <>
         <form className="max-w-[700px] w-11/12 mx-auto shadow-lg">
           <h3 className="w-full mx-auto text-2xl sm:w-11/12">Submit your coin</h3>
-            <label for="" class="flex flex-col my-4">
+            <label for="" className="flex flex-col my-4">
             Coin Name
             <input className="input" name="coin_name" type="text" value={formData.name || ""} onChange={handleForm} />
             {error.nameError && error.nameError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             </label>
-            <label for="" class="flex flex-col my-4">
+            <label for="" className="flex flex-col my-4">
             Symbol
             <input className="input" name="symbol" type="text" value={formData.symbol || ""} onChange={handleForm}/>
              {error.symbolError && error.symbolError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
              </label>
              
-            <label for="" class="flex flex-col my-4">
+            <label for="" className="flex flex-col my-4">
             Logo
             <input className="input" type="url" name="logo" value={formData.logo || ""} onChange={handleForm} />
              {error.logoError && error.logoError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             </label>
             
-            <label for="" class="flex flex-col my-4">
+            <label for="" className="flex flex-col my-4">
             Description
             <textarea className="input" name="description" value={formData.description || ""} onChange={handleForm} cols="40" rows="6"></textarea>
              {error.descError && error.descError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
              </label>
              
-            <label for="" class="flex flex-col my-4">
+            <label for="" className="flex flex-col my-4">
             Contract Address
             <input className="input" type="text" name="address" value={formData.address || ""} onChange={handleForm} />
              {error.addressError && error.addressError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             </label>
              
-            <label for="" class="flex flex-col my-4">
+            <label for="" className="flex flex-col my-4">
             Website Link
             <input className="input" type="url" name="website" value={formData.website || ""} onChange={handleForm} />
              {error.websiteError && error.websiteError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
@@ -120,25 +120,25 @@ function Submit(){
              {error.chainError && error.chainError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             </label>
             
-            <label for="" class="flex flex-col my-4">
+            <label for="" className="flex flex-col my-4">
             Release date
             <input className="input bg-white" type="date" name="release" value={formData.release || ""} onChange={handleForm} />
              {error.releaseError && error.releaseError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             </label>
             
-            <label for="" class="flex flex-col my-4">
+            <label for="" className="flex flex-col my-4">
             Market Capital
             <input className="input" type="number" name="marketcap" value={formData.marketcap || ""} onChange={handleForm} />
              {error.marketcapError && error.marketcapError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             </label>
             
-            <label for="" class="flex flex-col my-4">
+            <label for="" className="flex flex-col my-4">
             Twitter Link
             <input className="input" type="url" name="twitter" value={formData.twitter || ""} onChange={handleForm} />
              {error.twitterError && error.twitterError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
             </label>
             
-            <label for="" class="flex flex-col my-4">
+            <label for="" className="flex flex-col my-4">
             Telegram Link
             <input className="input" type="url" name="telegram" value={formData.telegram || ""} onChange={handleForm} />
             {error.telegramError && error.telegramError.map((el)=>(<div className="text-red-400 w-11/12 sm:w-10/12 mx-auto" key={Math.random()}>-{el}</div>))}
