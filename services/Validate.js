@@ -4,7 +4,7 @@ class Validate {
   constructor(formData){
     this.errors = {};
     this.formData = formData;
-    this.checkName(this.formData.coin_name);
+    this.checkName(this.formData.name);
     this.checkSymbol(this.formData.symbol);
     this.checkLogo(this.formData.logo);
     this.checkDescription(this.formData.description);
@@ -109,7 +109,7 @@ class Validate {
   
   checkRelease(release){
     const error = []
-    if(release == ""){
+    if(release.year == "" || release.month == "" || release.day == ""){
       error.push("Release date cannot be empty!");
       this.errors.releaseError = error;
       return;
